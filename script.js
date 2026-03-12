@@ -169,43 +169,24 @@ photo:"none"
 
 fetch(API_URL,{
 method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
 body:JSON.stringify(data)
 })
-
-.then(res=>res.text())
+.then(res=>res.json())
 .then(res=>{
-alert("Report Submitted!\nTracking Number: "+tracking)
-})
 
-}
-
-
-
-async function loadReports(){
-
-try{
-
-let response = await fetch(API_URL)
-
-let reports = await response.json()
-
-reports.forEach(r=>{
-
-if(!r.lat || !r.lng) return
-
-L.marker([parseFloat(r.lat),parseFloat(r.lng)])
-.addTo(map)
-.bindPopup(
-"<b>"+r.issue+"</b><br>"+r.location+"<br>Status: "+(r.status || "Pending")
-)
+alert("Report Submitted!\nTracking Number: " + tracking)
 
 })
+.catch(err=>{
 
-}catch(err){
+alert("Submission failed")
 
-console.log("Error loading reports",err)
+console.error(err)
 
-}
+})
 
 }
 
