@@ -124,3 +124,22 @@ async function loadDashboard(){
 
 // INITIALIZE MAP ON PAGE LOAD
 window.onload=()=>{initReportMap();}
+
+// PHOTO PREVIEW
+const photoInput = document.getElementById("photo");
+const photoPreview = document.getElementById("photoPreview");
+
+photoInput.addEventListener("change", function() {
+  const file = this.files[0];
+  if(file){
+    const reader = new FileReader();
+    reader.onload = function(e){
+      photoPreview.src = e.target.result;
+      photoPreview.style.display = "block";
+    }
+    reader.readAsDataURL(file);
+  } else {
+    photoPreview.src = "";
+    photoPreview.style.display = "none";
+  }
+});
