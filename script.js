@@ -3,7 +3,7 @@ let marker
 let lat = 0
 let lng = 0
 
-const API_URL = "https://script.google.com/macros/s/AKfycbzIrGemDc0CNREzRkgUttSK77uYxxV1zl6hnVDxeo07QS_fQTHmDZJNa_WTzdkHk-p7/exec"
+const API_URL = "https://script.google.com/macros/s/AKfycbxbI6r_DY9pgrl2UasWhh6j7WUWxyyuo2zgzTDaQcWYDvs1JZbzwOn9ixMS8NaqfLZG/exec"
 
 
 
@@ -208,3 +208,4 @@ console.log("Error loading reports",err)
 }
 
 }
+
