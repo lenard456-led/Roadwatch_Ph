@@ -20,6 +20,7 @@ href="https://unpkg.com/leaflet/dist/leaflet.css">
 <h2>RoadWatch PH</h2>
 </header>
 
+
 <div class="sidebar" id="menu">
 <button onclick="show('home')">Home</button>
 <button onclick="show('submit')">Submit Report</button>
@@ -31,9 +32,6 @@ href="https://unpkg.com/leaflet/dist/leaflet.css">
 <section id="home" class="active">
 <div class="card">
 <h2>Welcome to RoadWatch PH</h2>
-<p>
-Citizen-powered road monitoring platform.
-</p>
 </div>
 </section>
 
@@ -41,47 +39,30 @@ Citizen-powered road monitoring platform.
 <section id="submit">
 <div class="card">
 
-<h2>Submit Road Issue</h2>
-
-<h3>Reporter Information</h3>
-
-<div class="row">
 <input id="lastname" placeholder="Last Name">
 <input id="firstname" placeholder="First Name">
-<input id="mi" placeholder="M.I.">
-</div>
+<input id="mi" placeholder="MI">
 
-<input id="email" placeholder="Email Address">
-<input id="phone" placeholder="Phone Number">
+<input id="email">
+<input id="phone">
 
-<h3>Road Location</h3>
+<input id="locationText">
 
-<input id="locationText" placeholder="Street / Road Name">
-
-<button onclick="detectLocation()"
-class="autoBtn">
-Auto-detect My Location
+<button onclick="detectLocation()">
+Auto detect
 </button>
-
-<h3>Pin Location on Map</h3>
 
 <div id="reportMap"></div>
 
 <p id="selectedLocation">
-No location selected
+No location
 </p>
-
-<h3>Road Issue</h3>
 
 <textarea id="issue"></textarea>
 
-<input type="file" id="photo">
-
-<button class="submit"
-onclick="submitReport()">
-
-Submit Report
-
+<button onclick="submitReport()"
+class="submit">
+Submit
 </button>
 
 </div>
@@ -92,17 +73,13 @@ Submit Report
 
 <div>
 
-<h3>Report Submitted Successfully!</h3>
+<h3>Submitted</h3>
 
 <p id="trackInfo"></p>
 
-<button onclick="closePopup()">
-Done
-</button>
+<button onclick="closePopup()">Done</button>
 
-<button onclick="newReport()">
-Submit Another Report
-</button>
+<button onclick="newReport()">Again</button>
 
 </div>
 
@@ -110,28 +87,20 @@ Submit Another Report
 
 
 <section id="mapPage">
-
 <div class="card">
-
-<h2>Reported Road Issues Map</h2>
-
 <div id="map"></div>
-
 </div>
-
 </section>
 
 
 <section id="tracking">
-
 <div class="card">
-
-<h2>Tracking</h2>
-
+Tracking
 </div>
-
 </section>
 
+
+<!-- IMPORTANT: script at bottom -->
 
 <script src="script.js"></script>
 
