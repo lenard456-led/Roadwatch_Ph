@@ -126,7 +126,7 @@ function submitReport() {
     .then(res => res.text())
     .then(res => {
       // Show the popup correctly
-       document.getElementById("trackInfo").innerText = "Tracking Number: " + tracking;
+document.getElementById("trackInfo").innerText = "Tracking Number: " + tracking;
       document.getElementById("popup").classList.add("show"); // use class for fade-in
     })
     .catch(err => {
@@ -135,20 +135,18 @@ function submitReport() {
     });
 }
 
-// Close popup
+// Hide popup
 function closePopup() {
   document.getElementById("popup").classList.remove("show");
   showPage('home');
   resetForm();
 }
 
-// Submit another report
 function newReport() {
   document.getElementById("popup").classList.remove("show");
   resetForm();
   showPage('submit');
 }
-
 // Reset the form
 function resetForm() {
   document.querySelectorAll("#submit input,#submit textarea").forEach(el => el.value = "");
@@ -176,6 +174,7 @@ async function loadReports() {
     console.log("Error loading reports", err);
   }
 }
+
 
 
 
