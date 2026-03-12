@@ -36,30 +36,44 @@
 </section>
 
 <!-- SUBMIT REPORT -->
+<!-- SUBMIT REPORT -->
 <section id="submit">
   <div class="card glass-card">
     <h2>Submit Road Issue</h2>
 
     <h3>Reporter Information</h3>
     <div class="form-grid">
+      <!-- Last Name / First Name / M.I. in one row -->
       <div class="form-group"><input id="lastname" type="text" placeholder=" " required><label>Last Name</label></div>
       <div class="form-group"><input id="firstname" type="text" placeholder=" " required><label>First Name</label></div>
       <div class="form-group mi-group"><input id="mi" type="text" placeholder=" " maxlength="2"><label>M.I.</label></div>
+
+      <!-- Email / Mobile Number -->
       <div class="form-group"><input id="email" type="email" placeholder=" " required><label>Email Address</label></div>
       <div class="form-group"><input id="phone" type="tel" placeholder=" " pattern="[0-9]{10,11}"><label>Mobile Number</label></div>
     </div>
 
+    <!-- Road Location -->
     <h3>Road Location</h3>
-    <div class="form-group full-width"><input id="locationText" type="text" placeholder=" "><label>Street / Road Name</label></div>
+    <div class="form-group full-width">
+      <input id="locationText" type="text" placeholder=" " readonly>
+      <label>Street / Road Name</label>
+    </div>
     <button class="detectBtn" onclick="detectLocation()">Auto-detect My Location</button>
 
+    <!-- Pin location -->
     <h3>Pin Location on Map</h3>
     <div id="reportMap"></div>
     <p id="selectedLocation">No location selected</p>
 
+    <!-- Road Issue Details -->
     <h3>Road Issue Details</h3>
-    <div class="form-group full-width"><textarea id="issue" placeholder=" " rows="4"></textarea><label>Describe the road issue</label></div>
+    <div class="form-group full-width">
+      <textarea id="issue" placeholder=" " rows="4"></textarea>
+      <label>Describe the road issue</label>
+    </div>
 
+    <!-- Upload Photo -->
     <h3>Upload Photo (Optional)</h3>
     <div class="file-upload">
       <input type="file" id="photo" accept="image/*">
@@ -67,6 +81,7 @@
     </div>
     <img id="photoPreview" src="" alt="Photo Preview">
 
+    <!-- Submit Button -->
     <button class="submit" onclick="submitReport()">Submit Report</button>
   </div>
 </section>
@@ -115,3 +130,4 @@
 <script src="script.js"></script>
 </body>
 </html>
+
