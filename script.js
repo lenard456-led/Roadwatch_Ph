@@ -133,13 +133,41 @@ reader.readAsDataURL(file)
 
 
 
+const API_URL = "https://script.google.com/macros/s/AKfycbzIrGemDc0CNREzRkgUttSK77uYxxV1zl6hnVDxeo07QS_fQTHmDZJNa_WTzdkHk-p7/exec"
+
 function submitReport(){
 
-if(lat === 0){
-alert("Please select location on the map")
+if(lat===0){
+alert("Please select location")
 return
 }
 
-alert("Report submitted successfully!")
+let tracking = "RW" + Date.now()
+
+let data = {
+
+tracking:tracking,
+lastname:document.getElementById("lastname").value,
+firstname:document.getElementById("firstname").value,
+mi:document.getElementById("mi").value,
+email:document.getElementById("email").value,
+phone:document.getElementById("phone").value,
+location:document.getElementById("locationText").value,
+issue:document.getElementById("issue").value,
+lat:lat,
+lng:lng,
+photo:"none"
+
+}
+
+fetch(API_URL,{
+method:"POST",
+body:JSON.stringify(data)
+})
+
+.then(res=>res.text())
+.then(res=>{
+alert("Report Submitted!\nTracking Number: "+tracking)
+})
 
 }
