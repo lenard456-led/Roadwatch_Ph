@@ -143,19 +143,43 @@ reader.readAsDataURL(file)
 
 
 function submitReport() {
-    // Create formData first
+    if(lat===0 && !document.getElementById("locationText").value.trim()){
+        alert("Please select location or type the road name");
+        return;
+    }
+
+    let tracking = "RW" + Date.now();
+
+    // Create FormData
     let formData = new FormData();
-    formData.append("tracking", "RW" + Date.now());
+    formData.append("tracking", tracking);
     formData.append("lastname", document.getElementById("lastname").value);
-    // append all other fields here...
-    
-    fetch(API_URL, { method: "POST", body: formData })
-        .then(res => res.text())
-        .then(res => {
-            document.getElementById("trackInfo").innerText = "Tracking Number: RW" + Date.now();
-            document.getElementById("popup").style.display = "flex";
-        })
-        .catch(err => console.error(err));
+    formData.append("firstname", document.getElementById("firstname").value);
+    formData.append("mi", document.getElementById("mi").value);
+    formData.append("email", document.getElementById("email").value);
+    formData.append("phone", document.getElementById("phone").value);
+    formData.append("location", document.getElementById("locationText").value);
+    formData.append("issue", document.getElementById("issue").value);
+    formData.append("lat", lat || "");
+    formData.append("lng", lng || "");
+    formData.append("photo", document.getElementById("photo").files[0] || "none");
+
+    // Send FormData to Google Apps Script
+    fetch(API_URL, {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.text())
+    .then(res => {
+        // Show popup after successful submission
+        document.getElementById("trackInfo").innerText = "Tracking Number: " + tracking;
+        document.getElementById("popup").style.display = "flex";
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Submission failed. Check your API or internet connection.");
+    });
+}
 }
 
 function closePopup() {
@@ -207,6 +231,7 @@ console.log("Error loading reports", err)
 }
 
 }
+
 
 
 
