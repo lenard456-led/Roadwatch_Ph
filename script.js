@@ -205,32 +205,7 @@ function resetForm() {
 
 
 
-async function loadReports(){
 
-try{
-
-let response = await fetch(API_URL)
-let reports = await response.json()
-
-reports.forEach(r=>{
-
-if(!r.lat || !r.lng) return
-
-L.marker([parseFloat(r.lat), parseFloat(r.lng)])
-.addTo(map)
-.bindPopup(
-"<b>"+r.issue+"</b><br>"+r.location+"<br>Status: "+(r.status || "Pending")
-)
-
-})
-
-}catch(err){
-
-console.log("Error loading reports", err)
-
-}
-
-}
 
 
 
