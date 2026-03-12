@@ -11,7 +11,6 @@
 <!-- Leaflet -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
 </head>
 <body>
 
@@ -36,7 +35,6 @@
   </div>
 </section>
 
-<!-- SUBMIT REPORT -->
 <!-- SUBMIT REPORT -->
 <section id="submit">
   <div class="card glass-card">
@@ -66,51 +64,11 @@
 
     <h3>Upload Photo (Optional)</h3>
     <input type="file" id="photo" accept="image/*">
-    <img id="photoPreview" src="" alt="Photo Preview" style="display:none; max-width:100%; margin-top:10px; border-radius:10px; border:1px solid #00b4d8;">
+    <img id="photoPreview" src="" alt="Photo Preview">
 
-    async function submitReport(){
-  if(lat===0||lng===0){alert("Please select location"); return;}
-
-  let tracking = generateTracking();
-
-  let formData = new FormData();
-  formData.append("tracking", tracking);
-  formData.append("lastname", lastname.value);
-  formData.append("firstname", firstname.value);
-  formData.append("mi", mi.value);
-  formData.append("email", email.value);
-  formData.append("phone", phone.value);
-  formData.append("locationText", locationText.value);
-  formData.append("issue", issue.value);
-  formData.append("latitude", lat);
-  formData.append("longitude", lng);
-  formData.append("status", "Pending");
-
-  // Include photo if uploaded
-  if(photoInput.files[0]){
-    const file = photoInput.files[0];
-    const reader = new FileReader();
-    reader.onload = async function(e){
-      formData.append("photoBase64", e.target.result);
-      await sendReport(formData, tracking);
-    }
-    reader.readAsDataURL(file);
-  } else {
-    formData.append("photoBase64", "");
-    await sendReport(formData, tracking);
-  }
-}
-
-// Function to POST to Google Sheet Web App
-async function sendReport(formData, tracking){
-  try{
-    await fetch(API_URL, {method:"POST", body: formData});
-    trackInfo.innerHTML = "Tracking Number:<br><b>" + tracking + "</b>";
-    popup.style.display = "flex";
-  } catch(err){
-    alert("Submission failed: " + err.message);
-  }
-}
+    <button class="submit" onclick="submitReport()">Submit Report</button>
+  </div>
+</section>
 
 <!-- MAP PAGE -->
 <section id="mapPage">
@@ -156,5 +114,3 @@ async function sendReport(formData, tracking){
 <script src="script.js"></script>
 </body>
 </html>
-
-
