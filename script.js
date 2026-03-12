@@ -125,7 +125,7 @@ async function loadDashboard(){
 // INITIALIZE MAP ON PAGE LOAD
 window.onload=()=>{initReportMap();}
 
-// PHOTO PREVIEW
+// Photo Preview
 const photoInput = document.getElementById("photo");
 const photoPreview = document.getElementById("photoPreview");
 
@@ -143,3 +143,44 @@ photoInput.addEventListener("change", function() {
     photoPreview.style.display = "none";
   }
 });
+
+// Submit Report
+async function submitReport(){
+  if(lat===0||lng===0){alert("Please select location"); return;}
+  let tracking = generateTracking();
+  let formData = new FormData();
+  formData.append("tracking", tracking);
+  formData.append("lastname", lastname.value);
+  formData.append("firstname", firstname.value);
+  formData.append("mi", mi.value);
+  formData.append("email", email.value);
+  formData.append("phone", phone.value);
+  formData.append("locationText", locationText.value);
+  formData.append("issue", issue.value);
+  formData.append("latitude", lat);
+  formData.append("longitude", lng);
+  formData.append("status", "Pending");
+
+  if(photoInput.files[0]){
+    const reader = new FileReader();
+    reader.onload = async function(e){
+      formData.append("photoBase64", e.target.result);
+      await sendReport(formData, tracking);
+    }
+    reader.readAsDataURL(photoInput.files[0]);
+  } else {
+    formData.append("photoBase64", "");
+    await sendReport(formData, tracking);
+  }
+}
+
+// Send Report to Google Web App
+async function sendReport(formData, tracking){
+  try{
+    await fetch(API_URL, {method:"POST", body: formData});
+    trackInfo.innerHTML = "Tracking Number:<br><b>" + tracking + "</b>";
+    popup.style.display = "flex";
+  } catch(err){
+    alert("Submission failed: " + err.message);
+  }
+}
