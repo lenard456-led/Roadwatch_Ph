@@ -37,18 +37,21 @@
 
 <!-- SUBMIT REPORT -->
 <!-- SUBMIT REPORT -->
+<!-- SUBMIT REPORT -->
 <section id="submit">
   <div class="card glass-card">
     <h2>Submit Road Issue</h2>
 
     <h3>Reporter Information</h3>
-    <div class="form-grid">
-      <!-- Last Name / First Name / M.I. in one row -->
+    <!-- First Row: Last Name / First Name / M.I. -->
+    <div class="name-row">
       <div class="form-group"><input id="lastname" type="text" placeholder=" " required><label>Last Name</label></div>
       <div class="form-group"><input id="firstname" type="text" placeholder=" " required><label>First Name</label></div>
       <div class="form-group mi-group"><input id="mi" type="text" placeholder=" " maxlength="2"><label>M.I.</label></div>
+    </div>
 
-      <!-- Email / Mobile Number -->
+    <!-- Second Row: Email / Mobile Number -->
+    <div class="contact-row">
       <div class="form-group"><input id="email" type="email" placeholder=" " required><label>Email Address</label></div>
       <div class="form-group"><input id="phone" type="tel" placeholder=" " pattern="[0-9]{10,11}"><label>Mobile Number</label></div>
     </div>
@@ -130,4 +133,5 @@
 <script src="script.js"></script>
 </body>
 </html>
+
 
