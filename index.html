@@ -2,6 +2,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>RoadWatch PH</title>
 
 <link rel="stylesheet" href="style.css">
@@ -12,28 +14,138 @@ href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 </head>
-
 <body>
 
+<header>
+
+<span class="menuBtn" onclick="openMenu()">☰</span>
 <h2>RoadWatch PH</h2>
+
+</header>
+
+
+<div class="sidebar" id="menu">
+
+<button onclick="showPage('home')">Home</button>
+<button onclick="showPage('submit')">Submit Report</button>
+<button onclick="showPage('mapPage')">Map</button>
+<button onclick="showPage('tracking')">Tracking</button>
+
+</div>
+
+
+
+<section id="home" class="active">
+
+<div class="card">
+
+<h2>Welcome</h2>
+
+<p>
+Report potholes, cracks, flooding and road problems.
+</p>
+
+</div>
+
+</section>
+
+
+
+<section id="submit">
+
+<div class="card">
+
+<h2>Submit Report</h2>
 
 <input id="lastname" placeholder="Last name">
 <input id="firstname" placeholder="First name">
+<input id="mi" placeholder="M.I">
 
-<input id="locationText" placeholder="Road location">
+<input id="email" placeholder="Email">
+<input id="phone" placeholder="Phone">
+
+<input id="locationText"
+placeholder="Road location">
 
 <button onclick="detectLocation()">
-Auto detect location
+
+Auto detect
+
 </button>
 
-<div id="map"></div>
+<div id="reportMap"></div>
+
+<p id="selectedLocation">
+
+No location
+
+</p>
 
 <textarea id="issue"
 placeholder="Issue"></textarea>
 
-<button onclick="submitReport()">
-Submit Report
+<button
+class="submit"
+onclick="submitReport()">
+
+Submit
+
 </button>
+
+</div>
+
+</section>
+
+
+
+<section id="mapPage">
+
+<div class="card">
+
+<h2>Map</h2>
+
+<div id="map"></div>
+
+</div>
+
+</section>
+
+
+
+<section id="tracking">
+
+<div class="card">
+
+<h2>Tracking</h2>
+
+<p>Coming soon</p>
+
+</div>
+
+</section>
+
+
+
+<div id="popup">
+
+<div>
+
+<h3>Submitted</h3>
+
+<p id="trackInfo"></p>
+
+<button onclick="closePopup()">
+Done
+</button>
+
+<button onclick="newReport()">
+Another
+</button>
+
+</div>
+
+</div>
+
 
 <script src="script.js"></script>
 
