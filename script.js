@@ -5,13 +5,12 @@ let lng = 0
 
 
 function openMenu(){
-
-let menu=document.getElementById("menu")
-
-menu.style.width = menu.style.width=="200px" ? "0":"200px"
-
+document.getElementById("menu").style.width="220px"
 }
 
+function closeMenu(){
+document.getElementById("menu").style.width="0"
+}
 
 function showPage(id){
 
@@ -143,3 +142,4 @@ return
 alert("Report submitted successfully!")
 
 }
+
