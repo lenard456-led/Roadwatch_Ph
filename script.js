@@ -229,7 +229,6 @@ console.log("Error loading reports", err)
 
 }
 
-}
 
 
 
