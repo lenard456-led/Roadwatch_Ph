@@ -11,7 +11,6 @@
 <!-- Leaflet -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
 </head>
 <body>
 
@@ -43,33 +42,15 @@
 
     <h3>Reporter Information</h3>
     <div class="form-grid">
-      <div class="form-group">
-        <input id="lastname" type="text" required>
-        <label for="lastname">Last Name</label>
-      </div>
-      <div class="form-group">
-        <input id="firstname" type="text" required>
-        <label for="firstname">First Name</label>
-      </div>
-      <div class="form-group mi-group">
-        <input id="mi" type="text" maxlength="2">
-        <label for="mi">M.I.</label>
-      </div>
-      <div class="form-group">
-        <input id="email" type="email" required>
-        <label for="email">Email Address</label>
-      </div>
-      <div class="form-group">
-        <input id="phone" type="tel" pattern="[0-9]{10,11}">
-        <label for="phone">Mobile Number</label>
-      </div>
+      <div class="form-group"><input id="lastname" type="text" placeholder=" " required><label>Last Name</label></div>
+      <div class="form-group"><input id="firstname" type="text" placeholder=" " required><label>First Name</label></div>
+      <div class="form-group mi-group"><input id="mi" type="text" placeholder=" " maxlength="2"><label>M.I.</label></div>
+      <div class="form-group"><input id="email" type="email" placeholder=" " required><label>Email Address</label></div>
+      <div class="form-group"><input id="phone" type="tel" placeholder=" " pattern="[0-9]{10,11}"><label>Mobile Number</label></div>
     </div>
 
     <h3>Road Location</h3>
-    <div class="form-group full-width">
-      <input id="locationText" type="text">
-      <label for="locationText">Street / Road Name</label>
-    </div>
+    <div class="form-group full-width"><input id="locationText" type="text" placeholder=" "><label>Street / Road Name</label></div>
     <button class="detectBtn" onclick="detectLocation()">Auto-detect My Location</button>
 
     <h3>Pin Location on Map</h3>
@@ -77,15 +58,12 @@
     <p id="selectedLocation">No location selected</p>
 
     <h3>Road Issue Details</h3>
-    <div class="form-group full-width">
-      <textarea id="issue" rows="4"></textarea>
-      <label for="issue">Describe the road issue</label>
-    </div>
+    <div class="form-group full-width"><textarea id="issue" placeholder=" " rows="4"></textarea><label>Describe the road issue</label></div>
 
     <h3>Upload Photo (Optional)</h3>
     <div class="file-upload">
       <input type="file" id="photo" accept="image/*">
-      <span>Drag & drop or click to upload</span>
+      <span>Click or drag & drop to upload</span>
     </div>
     <img id="photoPreview" src="" alt="Photo Preview">
 
@@ -137,4 +115,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-
