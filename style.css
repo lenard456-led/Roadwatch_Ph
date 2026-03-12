@@ -1,142 +1,194 @@
 body{
+
 font-family:Arial;
-background:#011f4b;
-color:white;
 margin:0;
+background:#0a2540;
+color:white;
+
 }
+
+
 
 header{
-background:#023e8a;
-padding:15px;
+
 display:flex;
 align-items:center;
+padding:15px;
+background:#001f3f;
+
 }
+
+
 
 .menuBtn{
-font-size:25px;
-margin-right:10px;
+
+font-size:26px;
 cursor:pointer;
+margin-right:15px;
+
 }
+
+
 
 .sidebar{
+
 position:fixed;
-left:0;
 top:0;
+left:-220px;
+width:220px;
 height:100%;
-width:0;
-background:#011f4b;
-overflow-x:hidden;
+background:#001f3f;
 transition:0.3s;
 padding-top:70px;
-z-index:1000;
+
 }
 
+
+
 .sidebar button{
+
 display:block;
 width:100%;
-padding:15px 20px;
-background:none;
+padding:15px;
 border:none;
+background:none;
 color:white;
 text-align:left;
 cursor:pointer;
-font-size:16px;
+
 }
+
+
 
 .sidebar button:hover{
-background:#023e8a;
+
+background:#003566;
+
 }
 
-.menuBtn{
-font-size:26px;
-cursor:pointer;
-color:white;
-}
+
 
 section{
+
 display:none;
 padding:20px;
 max-width:900px;
 margin:auto;
+
 }
+
+
 
 .active{
+
 display:block;
+
 }
+
+
 
 .card{
-background:#022c5f;
-padding:20px;
+
+background:#001d3d;
+padding:25px;
 border-radius:10px;
+
 }
+
+
 
 h2{
-color:#00b4d8;
+
+color:#00d4ff;
 text-align:center;
+
 }
 
-.nameRow{
+
+
+.row{
+
 display:flex;
 gap:10px;
+margin-bottom:10px;
+
 }
 
-.contactRow{
-display:flex;
-gap:10px;
-margin-top:10px;
-}
 
-.mi{
-width:70px;
-}
 
-.inputGroup{
-position:relative;
+.row input{
+
 flex:1;
+
 }
 
-input,textarea{
+
+
+input, textarea{
+
 width:100%;
 padding:12px;
 border-radius:6px;
-border:1px solid #00b4d8;
-background:#023e8a;
+border:1px solid #00d4ff;
+background:#002855;
 color:white;
+
 }
+
+
 
 textarea{
-height:80px;
+
+height:90px;
+
 }
 
-label{
-position:absolute;
-top:12px;
-left:12px;
-color:#00b4d8;
-font-size:13px;
-pointer-events:none;
-}
+
 
 #reportMap{
+
 height:300px;
-border-radius:10px;
 margin-top:10px;
+border-radius:10px;
+
 }
 
+
+
+.detectBtn{
+
+margin-top:10px;
+padding:10px;
+border:none;
+background:#0077b6;
+color:white;
+border-radius:6px;
+cursor:pointer;
+
+}
+
+
+
 .submitBtn{
+
 margin-top:20px;
-width:100%;
 padding:12px;
+width:100%;
 background:#00f5d4;
 border:none;
 border-radius:8px;
 font-weight:bold;
 cursor:pointer;
+
 }
 
+
+
 #photoPreview{
+
 margin-top:10px;
 max-width:100%;
 display:none;
 border-radius:10px;
+
 }
