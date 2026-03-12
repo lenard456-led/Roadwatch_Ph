@@ -5,11 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RoadWatch PH</title>
 
-<link rel="stylesheet" href="style.css">
-
 <!-- Leaflet -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<!-- External CSS -->
+<link rel="stylesheet" href="style.css">
 
 </head>
 <body>
@@ -26,32 +27,31 @@
 <button onclick="show('tracking')">Tracking</button>
 </div>
 
-<!-- HOME -->
 <section id="home" class="active">
 <div class="card">
 <h2>Welcome to RoadWatch PH</h2>
-<p>Citizen-powered road monitoring platform. Report potholes, cracks, flooding, and unsafe road conditions. LGUs and DPWH can update the repair status in real-time.</p>
+<p>Citizen-powered road monitoring platform. Report potholes, cracks, flooding, and unsafe road conditions.</p>
 </div>
 </section>
 
-<!-- SUBMIT REPORT -->
 <section id="submit">
 <div class="card">
 <h2>Submit Road Issue</h2>
 
 <h3>Reporter Information</h3>
 <div style="display:flex; gap:10px; flex-wrap:wrap;">
-  <input id="lastname" placeholder="Last Name" style="flex:1;">
-  <input id="firstname" placeholder="First Name" style="flex:1;">
-  <input id="mi" placeholder="M.I." style="width:60px;">
+<input id="lastname" placeholder="Last Name" style="flex:1;">
+<input id="firstname" placeholder="First Name" style="flex:1;">
+<input id="mi" placeholder="M.I." style="width:60px;">
 </div>
+
 <input id="email" placeholder="Email Address">
 <input id="phone" placeholder="Phone Number">
 
 <h3>Road Location</h3>
 <input id="locationText" placeholder="Street / Road Name">
-<button type="button" onclick="detectLocation()" 
-style="margin-bottom:10px; width:100%; background:#00b4d8; color:white; border:none; padding:10px; border-radius:8px;">
+
+<button onclick="detectLocation()" class="detectBtn">
 Auto-detect My Location
 </button>
 
@@ -60,16 +60,16 @@ Auto-detect My Location
 <p id="selectedLocation">No location selected</p>
 
 <h3>Road Issue Details</h3>
-<textarea id="issue" placeholder="Describe the road issue" style="height:100px;"></textarea>
+<textarea id="issue" placeholder="Describe the road issue"></textarea>
 
 <h3>Upload Photo (Optional)</h3>
 <input type="file" id="photo">
 
 <button class="submit" onclick="submitReport()">Submit Report</button>
+
 </div>
 </section>
 
-<!-- Popup -->
 <div id="popup">
 <div>
 <h3>Report Submitted Successfully!</h3>
@@ -79,7 +79,6 @@ Auto-detect My Location
 </div>
 </div>
 
-<!-- MAP -->
 <section id="mapPage">
 <div class="card">
 <h2>Reported Road Issues Map</h2>
@@ -87,7 +86,7 @@ Auto-detect My Location
 </div>
 </section>
 
-
+<!-- External JS -->
 <script src="script.js"></script>
 
 </body>
