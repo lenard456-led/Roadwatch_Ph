@@ -151,41 +151,31 @@ return
 
 let tracking = "RW" + Date.now()
 
-let data = {
+let formData = new FormData()
 
-tracking:tracking,
-lastname:document.getElementById("lastname").value,
-firstname:document.getElementById("firstname").value,
-mi:document.getElementById("mi").value,
-email:document.getElementById("email").value,
-phone:document.getElementById("phone").value,
-location:document.getElementById("locationText").value,
-issue:document.getElementById("issue").value,
-lat:lat,
-lng:lng,
-photo:"none"
-
-}
+formData.append("tracking", tracking)
+formData.append("lastname", document.getElementById("lastname").value)
+formData.append("firstname", document.getElementById("firstname").value)
+formData.append("mi", document.getElementById("mi").value)
+formData.append("email", document.getElementById("email").value)
+formData.append("phone", document.getElementById("phone").value)
+formData.append("location", document.getElementById("locationText").value)
+formData.append("issue", document.getElementById("issue").value)
+formData.append("lat", lat)
+formData.append("lng", lng)
+formData.append("photo", "none")
 
 fetch(API_URL,{
 method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify(data)
+body: formData
 })
-.then(res=>res.json())
+.then(res=>res.text())
 .then(res=>{
-
 alert("Report Submitted!\nTracking Number: " + tracking)
-
 })
 .catch(err=>{
-
-alert("Submission failed")
-
 console.error(err)
-
+alert("Submission failed")
 })
 
 }
