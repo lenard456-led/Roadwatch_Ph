@@ -19,26 +19,38 @@ cursor:pointer;
 }
 
 .sidebar{
-width:0;
 position:fixed;
 left:0;
 top:0;
 height:100%;
+width:0;
 background:#011f4b;
-overflow:hidden;
-transition:.3s;
-padding-top:60px;
+overflow-x:hidden;
+transition:0.3s;
+padding-top:70px;
+z-index:1000;
 }
 
 .sidebar button{
 display:block;
 width:100%;
-padding:15px;
+padding:15px 20px;
 background:none;
 border:none;
 color:white;
 text-align:left;
 cursor:pointer;
+font-size:16px;
+}
+
+.sidebar button:hover{
+background:#023e8a;
+}
+
+.menuBtn{
+font-size:26px;
+cursor:pointer;
+color:white;
 }
 
 section{
