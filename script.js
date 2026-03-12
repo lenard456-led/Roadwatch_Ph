@@ -143,14 +143,9 @@ reader.readAsDataURL(file)
 
 
 function submitReport(){
-
-    if(lat === 0){
-        alert("Please select location")
-        return
-    }
+    if(lat === 0){ alert("Select a location"); return; }
 
     let tracking = "RW" + Date.now()
-
     let formData = new FormData()
     formData.append("tracking", tracking)
     formData.append("lastname", document.getElementById("lastname").value)
@@ -165,20 +160,18 @@ function submitReport(){
     formData.append("photo", "none")
 
     fetch(API_URL,{
-        method:"POST",
+        method: "POST",
         body: formData
     })
-    .then(res => res.text())
-    .then(res => {
-        alert("Report Submitted!\nTracking Number: " + tracking)
+    .then(res=>res.text())
+    .then(res=>{
+        alert("Report Submitted!\nTracking Number: "+tracking)
     })
-    .catch(err => {
+    .catch(err=>{
         console.error(err)
-        alert("Submission failed. Check Google Apps Script deployment.")
+        alert("Submission failed")
     })
-
 }
-
 
 
 
@@ -208,5 +201,6 @@ console.log("Error loading reports", err)
 }
 
 }
+
 
 
