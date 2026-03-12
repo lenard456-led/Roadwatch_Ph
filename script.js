@@ -125,8 +125,9 @@ function submitReport() {
   })
     .then(res => res.text())
     .then(res => {
+      // Show the popup correctly
       document.getElementById("trackInfo").innerText = "Tracking Number: " + tracking;
-      document.getElementById("popup").style.display = "flex";
+      document.getElementById("popup").classList.add("show"); // use class for blur/fade effect
     })
     .catch(err => {
       console.error(err);
@@ -134,23 +135,20 @@ function submitReport() {
     });
 }
 
-// Show popup
- document.getElementById("trackInfo").innerText = "Tracking Number: " + tracking;
-    document.getElementById("popup").style.display = "flex";
-}
-
-// Hide popup
+// Close popup
 function closePopup() {
-    document.getElementById("popup").style.display = "none";
-    showPage('home');
-    resetForm();
+  document.getElementById("popup").classList.remove("show");
+  showPage('home');
+  resetForm();
 }
 
+// Submit another report
 function newReport() {
-    document.getElementById("popup").style.display = "none";
-    resetForm();
-    showPage('submit');
+  document.getElementById("popup").classList.remove("show");
+  resetForm();
+  showPage('submit');
 }
+
 // Reset the form
 function resetForm() {
   document.querySelectorAll("#submit input,#submit textarea").forEach(el => el.value = "");
@@ -178,5 +176,6 @@ async function loadReports() {
     console.log("Error loading reports", err);
   }
 }
+
 
 
