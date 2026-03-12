@@ -17,18 +17,14 @@
 <body>
 
 <header>
-
 <span class="menuBtn" onclick="toggleMenu()">☰</span>
 <h2>RoadWatch PH</h2>
-
 </header>
 
 
 <div class="sidebar" id="menu">
-
 <button onclick="showPage('home')">Home</button>
 <button onclick="showPage('submit')">Submit Report</button>
-
 </div>
 
 
@@ -42,8 +38,7 @@
 <h2>Welcome to RoadWatch PH</h2>
 
 <p>
-Citizen powered road monitoring system where people can report
-potholes, cracks, flooding and dangerous road conditions.
+Report potholes, cracks, flooding, and road hazards.
 </p>
 
 </div>
@@ -60,30 +55,22 @@ potholes, cracks, flooding and dangerous road conditions.
 
 <h2>Submit Road Issue</h2>
 
-
-
 <h3>Reporter Information</h3>
 
 <div class="row">
 
 <input id="lastname" placeholder="Last Name">
-
 <input id="firstname" placeholder="First Name">
-
 <input id="mi" placeholder="M.I.">
 
 </div>
 
-
-
 <div class="row">
 
 <input id="email" placeholder="Email">
-
 <input id="phone" placeholder="Mobile Number">
 
 </div>
-
 
 
 <h3>Road Location</h3>
@@ -93,19 +80,16 @@ potholes, cracks, flooding and dangerous road conditions.
 <button class="detectBtn" onclick="detectLocation()">Auto Detect Location</button>
 
 
-
-<h3>Pin Location on Map</h3>
+<h3>Select Location</h3>
 
 <div id="reportMap"></div>
 
 <p id="selectedLocation">No location selected</p>
 
 
-
 <h3>Road Issue</h3>
 
-<textarea id="issue" placeholder="Describe the problem"></textarea>
-
+<textarea id="issue" placeholder="Describe the issue"></textarea>
 
 
 <h3>Upload Photo</h3>
@@ -115,13 +99,11 @@ potholes, cracks, flooding and dangerous road conditions.
 <img id="photoPreview">
 
 
-
 <button class="submitBtn" onclick="submitReport()">Submit Report</button>
 
 </div>
 
 </section>
-
 
 <script src="script.js"></script>
 
