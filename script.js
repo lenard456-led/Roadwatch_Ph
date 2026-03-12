@@ -143,20 +143,19 @@ reader.readAsDataURL(file)
 
 
 function submitReport() {
-    // ... your FormData submission code ...
-
+    // Create formData first
+    let formData = new FormData();
+    formData.append("tracking", "RW" + Date.now());
+    formData.append("lastname", document.getElementById("lastname").value);
+    // append all other fields here...
+    
     fetch(API_URL, { method: "POST", body: formData })
         .then(res => res.text())
         .then(res => {
-            // Set tracking number inside popup
-            document.getElementById("trackInfo").innerText = "Tracking Number: " + tracking;
-            // Show popup
+            document.getElementById("trackInfo").innerText = "Tracking Number: RW" + Date.now();
             document.getElementById("popup").style.display = "flex";
         })
-        .catch(err => {
-            console.error(err);
-            alert("Submission failed. Check your API or internet connection.");
-        });
+        .catch(err => console.error(err));
 }
 
 function closePopup() {
@@ -208,6 +207,7 @@ console.log("Error loading reports", err)
 }
 
 }
+
 
 
 
