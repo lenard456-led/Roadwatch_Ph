@@ -4,48 +4,77 @@ let lat = 0
 let lng = 0
 
 
-function openMenu(){
-document.getElementById("menu").style.width="220px"
+
+function toggleMenu(){
+
+let menu = document.getElementById("menu")
+
+if(menu.style.left === "0px"){
+
+menu.style.left = "-220px"
+
+}else{
+
+menu.style.left = "0px"
+
 }
 
-function closeMenu(){
-document.getElementById("menu").style.width="0"
 }
+
+
 
 function showPage(id){
 
-document.querySelectorAll("section").forEach(s=>s.classList.remove("active"))
+document.querySelectorAll("section").forEach(sec=>{
+
+sec.classList.remove("active")
+
+})
 
 document.getElementById(id).classList.add("active")
 
-if(id=="submit"){
-setTimeout(initMap,200)
+toggleMenu()
+
+if(id==="submit"){
+
+setTimeout(initMap,300)
+
 }
 
 }
+
 
 
 function initMap(){
 
 if(map) return
 
-map = L.map('reportMap').setView([14.1,121],10)
+map = L.map('reportMap').setView([14.5995,120.9842],13)
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+
 maxZoom:19
+
 }).addTo(map)
+
+
 
 map.on("click",function(e){
 
 lat = e.latlng.lat
+
 lng = e.latlng.lng
+
+
 
 if(marker) map.removeLayer(marker)
 
 marker = L.marker([lat,lng]).addTo(map)
 
+
+
 document.getElementById("selectedLocation").innerText =
-"Selected: "+lat.toFixed(5)+" , "+lng.toFixed(5)
+"Selected Location: " + lat.toFixed(5) + ", " + lng.toFixed(5)
 
 })
 
@@ -63,19 +92,28 @@ return
 
 }
 
+
+
 navigator.geolocation.getCurrentPosition(async function(pos){
 
 lat = pos.coords.latitude
 lng = pos.coords.longitude
 
+
+
 map.setView([lat,lng],16)
+
+
 
 if(marker) map.removeLayer(marker)
 
 marker = L.marker([lat,lng]).addTo(map)
 
+
+
 document.getElementById("selectedLocation").innerText =
-"Selected: "+lat.toFixed(5)+" , "+lng.toFixed(5)
+"Selected Location: " + lat.toFixed(5) + ", " + lng.toFixed(5)
+
 
 
 try{
@@ -108,16 +146,18 @@ let preview = document.getElementById("photoPreview")
 
 photoInput.addEventListener("change",function(){
 
-let file=this.files[0]
+let file = this.files[0]
 
 if(!file) return
 
+
+
 let reader = new FileReader()
 
-reader.onload=function(e){
+reader.onload = function(e){
 
-preview.src=e.target.result
-preview.style.display="block"
+preview.src = e.target.result
+preview.style.display = "block"
 
 }
 
@@ -131,9 +171,9 @@ reader.readAsDataURL(file)
 
 function submitReport(){
 
-if(lat==0){
+if(lat===0){
 
-alert("Please select location")
+alert("Please select a location")
 
 return
 
@@ -142,4 +182,3 @@ return
 alert("Report submitted successfully!")
 
 }
-
