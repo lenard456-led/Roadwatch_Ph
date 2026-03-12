@@ -134,19 +134,21 @@ function submitReport() {
     });
 }
 
-// Popup actions
+// Show popup
+document.getElementById("popup").style.display = "flex";
+
+// Hide popup
 function closePopup() {
-  document.getElementById("popup").style.display = "none";
-  showPage('home');
-  resetForm();
+    document.getElementById("popup").style.display = "none";
+    showPage('home');
+    resetForm();
 }
 
 function newReport() {
-  document.getElementById("popup").style.display = "none";
-  resetForm();
-  showPage('submit');
+    document.getElementById("popup").style.display = "none";
+    resetForm();
+    showPage('submit');
 }
-
 // Reset the form
 function resetForm() {
   document.querySelectorAll("#submit input,#submit textarea").forEach(el => el.value = "");
@@ -174,3 +176,4 @@ async function loadReports() {
     console.log("Error loading reports", err);
   }
 }
+
