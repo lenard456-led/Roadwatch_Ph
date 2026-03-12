@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>RoadWatch PH</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+</head>
+
+<body>
+
+<h2>RoadWatch PH</h2>
+
+<input id="lastname" placeholder="Last name">
+<input id="firstname" placeholder="First name">
+
+<input id="locationText" placeholder="Road location">
+
+<button onclick="detectLocation()">
+Auto detect location
+</button>
+
+<div id="map"></div>
+
+<textarea id="issue"
+placeholder="Issue"></textarea>
+
+<button onclick="submitReport()">
+Submit Report
+</button>
+
+<script src="script.js"></script>
+
+</body>
+</html>
