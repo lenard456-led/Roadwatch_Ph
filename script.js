@@ -142,35 +142,62 @@ reader.readAsDataURL(file)
 
 
 
-function submitReport(){
-    if(lat === 0){ alert("Select a location"); return; }
+function submitReport() {
+    if (lat === 0 && !document.getElementById("locationText").value.trim()) {
+        alert("Please pin your location or enter road location manually");
+        return;
+    }
 
-    let tracking = "RW" + Date.now()
-    let formData = new FormData()
-    formData.append("tracking", tracking)
-    formData.append("lastname", document.getElementById("lastname").value)
-    formData.append("firstname", document.getElementById("firstname").value)
-    formData.append("mi", document.getElementById("mi").value)
-    formData.append("email", document.getElementById("email").value)
-    formData.append("phone", document.getElementById("phone").value)
-    formData.append("location", document.getElementById("locationText").value)
-    formData.append("issue", document.getElementById("issue").value)
-    formData.append("lat", lat)
-    formData.append("lng", lng)
-    formData.append("photo", "none")
+    let tracking = "RW" + Date.now();
 
-    fetch(API_URL,{
+    let formData = new FormData();
+    formData.append("tracking", tracking);
+    formData.append("lastname", document.getElementById("lastname").value);
+    formData.append("firstname", document.getElementById("firstname").value);
+    formData.append("mi", document.getElementById("mi").value);
+    formData.append("email", document.getElementById("email").value);
+    formData.append("phone", document.getElementById("phone").value);
+    formData.append("location", document.getElementById("locationText").value);
+    formData.append("issue", document.getElementById("issue").value);
+    formData.append("lat", lat || ""); // empty if not pinned
+    formData.append("lng", lng || "");
+    formData.append("photo", document.getElementById("photo").files[0] || "none");
+
+    fetch(API_URL, {
         method: "POST",
         body: formData
     })
-    .then(res=>res.text())
-    .then(res=>{
-        alert("Report Submitted!\nTracking Number: "+tracking)
+    .then(res => res.text())
+    .then(res => {
+        // Show popup with tracking number
+        document.getElementById("trackInfo").innerText = tracking;
+        document.getElementById("popup").style.display = "flex";
     })
-    .catch(err=>{
-        console.error(err)
-        alert("Submission failed")
-    })
+    .catch(err => {
+        console.error(err);
+        alert("Submission failed. Please check API or internet connection.");
+    });
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+    showPage('home');
+    resetForm();
+}
+
+function newReport() {
+    document.getElementById("popup").style.display = "none";
+    resetForm();
+    showPage('submit');
+}
+
+function resetForm() {
+    document.querySelectorAll("#submit input, #submit textarea").forEach(el => el.value = "");
+    document.getElementById("selectedLocation").innerText = "No location selected";
+    lat = 0;
+    lng = 0;
+    if (marker) map.removeLayer(marker);
+    document.getElementById("photoPreview").style.display = "none";
 }
 
 
@@ -201,6 +228,7 @@ console.log("Error loading reports", err)
 }
 
 }
+
 
 
 
