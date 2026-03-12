@@ -47,8 +47,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
 maxZoom:19
 }).addTo(map)
 
-
-
 map.on("click",function(e){
 
 lat = e.latlng.lat
@@ -57,6 +55,12 @@ lng = e.latlng.lng
 if(marker) map.removeLayer(marker)
 
 marker = L.marker([lat,lng]).addTo(map)
+
+})
+
+loadReports()   // ← ADD THIS LINE HERE
+
+}
 
 document.getElementById("selectedLocation").innerText =
 "Selected: "+lat.toFixed(5)+" , "+lng.toFixed(5)
@@ -168,6 +172,24 @@ body:JSON.stringify(data)
 .then(res=>res.text())
 .then(res=>{
 alert("Report Submitted!\nTracking Number: "+tracking)
+})
+
+}
+
+async function loadReports(){
+
+let response = await fetch(API_URL)
+
+let reports = await response.json()
+
+reports.forEach(r=>{
+
+L.marker([r.lat,r.lng])
+.addTo(map)
+.bindPopup(
+"<b>"+r.issue+"</b><br>"+r.location+"<br>Status: "+r.status
+)
+
 })
 
 }
