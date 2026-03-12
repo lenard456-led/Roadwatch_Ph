@@ -42,18 +42,34 @@
     <h2>Submit Road Issue</h2>
 
     <h3>Reporter Information</h3>
-    <div class="flex-row">
-      <input id="lastname" placeholder="Last Name" required>
-      <input id="firstname" placeholder="First Name" required>
-      <input id="mi" placeholder="M.I." maxlength="2" style="width:60px;">
-    </div>
-    <div class="flex-row">
-      <input id="email" placeholder="Email Address" type="email" required>
-      <input id="phone" placeholder="Mobile Number" type="tel" pattern="[0-9]{10,11}">
+    <div class="form-grid">
+      <div class="form-group">
+        <input id="lastname" type="text" required>
+        <label for="lastname">Last Name</label>
+      </div>
+      <div class="form-group">
+        <input id="firstname" type="text" required>
+        <label for="firstname">First Name</label>
+      </div>
+      <div class="form-group mi-group">
+        <input id="mi" type="text" maxlength="2">
+        <label for="mi">M.I.</label>
+      </div>
+      <div class="form-group">
+        <input id="email" type="email" required>
+        <label for="email">Email Address</label>
+      </div>
+      <div class="form-group">
+        <input id="phone" type="tel" pattern="[0-9]{10,11}">
+        <label for="phone">Mobile Number</label>
+      </div>
     </div>
 
     <h3>Road Location</h3>
-    <input id="locationText" placeholder="Street / Road Name">
+    <div class="form-group full-width">
+      <input id="locationText" type="text">
+      <label for="locationText">Street / Road Name</label>
+    </div>
     <button class="detectBtn" onclick="detectLocation()">Auto-detect My Location</button>
 
     <h3>Pin Location on Map</h3>
@@ -61,10 +77,16 @@
     <p id="selectedLocation">No location selected</p>
 
     <h3>Road Issue Details</h3>
-    <textarea id="issue" placeholder="Describe the road issue"></textarea>
+    <div class="form-group full-width">
+      <textarea id="issue" rows="4"></textarea>
+      <label for="issue">Describe the road issue</label>
+    </div>
 
     <h3>Upload Photo (Optional)</h3>
-    <input type="file" id="photo" accept="image/*">
+    <div class="file-upload">
+      <input type="file" id="photo" accept="image/*">
+      <span>Drag & drop or click to upload</span>
+    </div>
     <img id="photoPreview" src="" alt="Photo Preview">
 
     <button class="submit" onclick="submitReport()">Submit Report</button>
@@ -115,3 +137,4 @@
 <script src="script.js"></script>
 </body>
 </html>
+
