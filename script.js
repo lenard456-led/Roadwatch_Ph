@@ -144,42 +144,40 @@ reader.readAsDataURL(file)
 
 function submitReport(){
 
-if(lat === 0){
-alert("Please select location")
-return
+    if(lat === 0){
+        alert("Please select location")
+        return
+    }
+
+    let tracking = "RW" + Date.now()
+
+    let formData = new FormData()
+    formData.append("tracking", tracking)
+    formData.append("lastname", document.getElementById("lastname").value)
+    formData.append("firstname", document.getElementById("firstname").value)
+    formData.append("mi", document.getElementById("mi").value)
+    formData.append("email", document.getElementById("email").value)
+    formData.append("phone", document.getElementById("phone").value)
+    formData.append("location", document.getElementById("locationText").value)
+    formData.append("issue", document.getElementById("issue").value)
+    formData.append("lat", lat)
+    formData.append("lng", lng)
+    formData.append("photo", "none")
+
+    fetch(API_URL,{
+        method:"POST",
+        body: formData
+    })
+    .then(res => res.text())
+    .then(res => {
+        alert("Report Submitted!\nTracking Number: " + tracking)
+    })
+    .catch(err => {
+        console.error(err)
+        alert("Submission failed. Check Google Apps Script deployment.")
+    })
+
 }
-
-let tracking = "RW" + Date.now()
-
-let formData = new FormData()
-
-formData.append("tracking", tracking)
-formData.append("lastname", document.getElementById("lastname").value)
-formData.append("firstname", document.getElementById("firstname").value)
-formData.append("mi", document.getElementById("mi").value)
-formData.append("email", document.getElementById("email").value)
-formData.append("phone", document.getElementById("phone").value)
-formData.append("location", document.getElementById("locationText").value)
-formData.append("issue", document.getElementById("issue").value)
-formData.append("lat", lat)
-formData.append("lng", lng)
-formData.append("photo", "none")
-
-fetch(API_URL,{
-method:"POST",
-body: formData
-})
-.then(res=>res.text())
-.then(res=>{
-alert("Report Submitted!\nTracking Number: " + tracking)
-})
-.catch(err=>{
-console.error(err)
-alert("Submission failed")
-})
-
-}
-
 
 
 
@@ -210,3 +208,4 @@ console.log("Error loading reports", err)
 }
 
 }
+
