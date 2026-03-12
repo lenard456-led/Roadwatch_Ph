@@ -1,69 +1,157 @@
-let map;
-let marker;
-let lat=0;
-let lng=0;
+let reportMap
+let marker
+let lat = 0
+let lng = 0
 
-map = L.map('map').setView([14.1,121],10);
+
+function openMenu(){
+
+let m = document.getElementById("menu")
+
+if(m.style.width=="250px")
+m.style.width="0"
+else
+m.style.width="250px"
+
+}
+
+
+function showPage(id){
+
+document
+.querySelectorAll("section")
+.forEach(s=>s.classList.remove("active"))
+
+document
+.getElementById(id)
+.classList.add("active")
+
+openMenu()
+
+if(id=="submit"){
+
+setTimeout(()=>{
+
+initMap()
+
+reportMap.invalidateSize()
+
+},500)
+
+}
+
+}
+
+
+function initMap(){
+
+if(reportMap) return
+
+reportMap =
+L.map("reportMap")
+.setView([14.1,121],10)
 
 L.tileLayer(
-'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-).addTo(map);
+"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+).addTo(reportMap)
 
-map.on("click",function(e){
+reportMap.on("click",e=>{
 
 lat=e.latlng.lat
 lng=e.latlng.lng
 
-if(marker) map.removeLayer(marker)
+if(marker)
+reportMap.removeLayer(marker)
 
-marker=L.marker([lat,lng]).addTo(map)
+marker=
+L.marker([lat,lng])
+.addTo(reportMap)
+
+document.getElementById(
+"selectedLocation"
+).innerText=
+lat+", "+lng
 
 })
 
+}
+
+
 function detectLocation(){
 
-navigator.geolocation.getCurrentPosition(
+navigator.geolocation
+.getCurrentPosition(pos=>{
 
-function(pos){
+lat = pos.coords.latitude
+lng = pos.coords.longitude
 
-lat=pos.coords.latitude
-lng=pos.coords.longitude
+if(marker)
+reportMap.removeLayer(marker)
 
-map.setView([lat,lng],16)
+marker =
+L.marker([lat,lng])
+.addTo(reportMap)
 
-if(marker) map.removeLayer(marker)
+reportMap.setView(
+[lat,lng],15)
 
-marker=L.marker([lat,lng]).addTo(map)
+document.getElementById(
+"selectedLocation"
+).innerText =
+lat+", "+lng
+
+})
 
 }
 
-)
-
-}
 
 function generateTracking(){
 
-return "RW-"+Date.now()
+let d=new Date()
+
+return "RW-"+d.getTime()
 
 }
 
+
+
 async function submitReport(){
+
+if(lat==0){
+
+alert("Pin location")
+
+return
+
+}
+
+let tracking =
+generateTracking()
 
 let data={
 
-tracking:generateTracking(),
+tracking:tracking,
 
 lastname:
-document.getElementById("lastname").value,
+lastname.value,
 
 firstname:
-document.getElementById("firstname").value,
+firstname.value,
+
+mi:
+mi.value,
+
+email:
+email.value,
+
+phone:
+phone.value,
 
 locationText:
-document.getElementById("locationText").value,
+locationText.value,
 
 issue:
-document.getElementById("issue").value,
+issue.value,
 
 latitude:lat,
 longitude:lng,
@@ -72,23 +160,51 @@ status:"Pending"
 
 }
 
+
 try{
 
-let res=await fetch(
+await fetch(
 "https://script.google.com/macros/s/AKfycbw5VPaNHJM37bAm6xa37Wf8SEWfNrmvVdZqwy8kZ4_-AbI5z8EHtctjIRJOa3EnuPno/exec",
 {
 method:"POST",
-body:JSON.stringify(data)
-})
+headers:{
+"Content-Type":
+"text/plain"
+},
+body:
+JSON.stringify(data)
+}
+)
 
-let json=await res.json()
+trackInfo.innerHTML=
+tracking
 
-alert("Submitted")
-
-}catch(err){
-
-alert("Failed to fetch")
+popup.style.display="flex"
 
 }
+catch(e){
+
+alert("Failed")
+
+}
+
+}
+
+
+
+function closePopup(){
+
+popup.style.display="none"
+
+showPage("home")
+
+}
+
+
+function newReport(){
+
+popup.style.display="none"
+
+showPage("submit")
 
 }
