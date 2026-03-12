@@ -135,7 +135,9 @@ function submitReport() {
 }
 
 // Show popup
-document.getElementById("popup").style.display = "flex";
+ document.getElementById("trackInfo").innerText = "Tracking Number: " + tracking;
+    document.getElementById("popup").style.display = "flex";
+}
 
 // Hide popup
 function closePopup() {
@@ -176,4 +178,5 @@ async function loadReports() {
     console.log("Error loading reports", err);
   }
 }
+
 
