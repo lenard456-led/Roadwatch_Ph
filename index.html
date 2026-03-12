@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>RoadWatch PH</title>
 
 <link rel="stylesheet" href="style.css">
@@ -11,26 +13,46 @@
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 </head>
+
 <body>
 
 <header>
-<span class="menuBtn" onclick="openMenu()">☰</span>
+
+<span class="menuBtn" onclick="toggleMenu()">☰</span>
 <h2>RoadWatch PH</h2>
+
 </header>
 
+
 <div class="sidebar" id="menu">
-  <button onclick="showPage('home');closeMenu()">Home</button>
-  <button onclick="showPage('submit');closeMenu()">Submit Report</button>
+
+<button onclick="showPage('home')">Home</button>
+<button onclick="showPage('submit')">Submit Report</button>
+
 </div>
 
+
+
+<!-- HOME -->
 
 <section id="home" class="active">
+
 <div class="card">
+
 <h2>Welcome to RoadWatch PH</h2>
-<p>Report road problems like potholes and flooding.</p>
+
+<p>
+Citizen powered road monitoring system where people can report
+potholes, cracks, flooding and dangerous road conditions.
+</p>
+
 </div>
+
 </section>
 
+
+
+<!-- SUBMIT REPORT -->
 
 <section id="submit">
 
@@ -38,66 +60,52 @@
 
 <h2>Submit Road Issue</h2>
 
+
+
 <h3>Reporter Information</h3>
 
-<div class="nameRow">
+<div class="row">
 
-<div class="inputGroup">
-<input id="lastname" placeholder=" ">
-<label>Last Name</label>
-</div>
+<input id="lastname" placeholder="Last Name">
 
-<div class="inputGroup">
-<input id="firstname" placeholder=" ">
-<label>First Name</label>
-</div>
+<input id="firstname" placeholder="First Name">
 
-<div class="inputGroup mi">
-<input id="mi" placeholder=" ">
-<label>M.I.</label>
-</div>
+<input id="mi" placeholder="M.I.">
 
 </div>
 
 
-<div class="contactRow">
 
-<div class="inputGroup">
-<input id="email" placeholder=" ">
-<label>Email</label>
-</div>
+<div class="row">
 
-<div class="inputGroup">
-<input id="phone" placeholder=" ">
-<label>Mobile Number</label>
-</div>
+<input id="email" placeholder="Email">
+
+<input id="phone" placeholder="Mobile Number">
 
 </div>
+
 
 
 <h3>Road Location</h3>
 
-<div class="inputGroup">
-<input id="locationText" readonly placeholder=" ">
-<label>Street / Road Name</label>
-</div>
+<input id="locationText" placeholder="Street / Road Name" readonly>
 
 <button class="detectBtn" onclick="detectLocation()">Auto Detect Location</button>
 
 
-<h3>Pin Location</h3>
+
+<h3>Pin Location on Map</h3>
 
 <div id="reportMap"></div>
 
 <p id="selectedLocation">No location selected</p>
 
 
-<h3>Issue Description</h3>
 
-<div class="inputGroup">
-<textarea id="issue" placeholder=" "></textarea>
-<label>Describe the issue</label>
-</div>
+<h3>Road Issue</h3>
+
+<textarea id="issue" placeholder="Describe the problem"></textarea>
+
 
 
 <h3>Upload Photo</h3>
@@ -105,6 +113,7 @@
 <input type="file" id="photo">
 
 <img id="photoPreview">
+
 
 
 <button class="submitBtn" onclick="submitReport()">Submit Report</button>
@@ -118,5 +127,3 @@
 
 </body>
 </html>
-
-
