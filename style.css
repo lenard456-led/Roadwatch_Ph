@@ -1,143 +1,30 @@
-body{
-font-family:Arial;
-margin:0;
-background:#0a2540;
-color:white;
-}
-
-header{
-display:flex;
-align-items:center;
-background:#001f3f;
-padding:15px;
-}
-
-.menuBtn{
-font-size:26px;
-cursor:pointer;
-margin-right:15px;
-}
-
-.sidebar{
-position:fixed;
-left:-220px;
-top:0;
-width:220px;
-height:100%;
-background:#001f3f;
-transition:0.3s;
-padding-top:60px;
-}
-
-.sidebar button{
-display:block;
-width:100%;
-padding:15px;
-border:none;
-background:none;
-color:white;
-cursor:pointer;
-text-align:left;
-}
-
-.sidebar button:hover{
-background:#003566;
-}
-
-section{
-display:none;
-padding:20px;
-max-width:900px;
-margin:auto;
-}
-
-.active{
-display:block;
-}
-
-.card{
-background:#001d3d;
-padding:25px;
-border-radius:10px;
-}
-
-.row{
-display:flex;
-gap:10px;
-margin-bottom:10px;
-}
-
-.row input{
-flex:1;
-}
-
-input, textarea{
-width:100%;
-padding:10px;
-border-radius:6px;
-border:1px solid #00d4ff;
-background:#002855;
-color:white;
-}
-
-textarea{
-height:80px;
-}
-
-#reportMap{
-height:300px;
-margin-top:10px;
-border-radius:10px;
-}
-
-.detectBtn{
-margin-top:10px;
-padding:10px;
-background:#0077b6;
-border:none;
-color:white;
-border-radius:6px;
-cursor:pointer;
-}
-
-.submitBtn{
-margin-top:20px;
-padding:12px;
-width:100%;
-background:#00f5d4;
-border:none;
-border-radius:8px;
-font-weight:bold;
-cursor:pointer;
-}
-
-#photoPreview{
-display:none;
-margin-top:10px;
-max-width:100%;
-border-radius:10px;
-}
-
-
-
-/* Popup overlay */
+/* ===== Popup Overlay ===== */
 #popup {
   display: none; /* hidden by default */
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
   height: 100%;
   backdrop-filter: blur(5px); /* blur background */
-  background: rgba(0,0,0,0.5); /* semi-transparent overlay */
+  background-color: rgba(0, 0, 0, 0.4); /* semi-transparent dark overlay */
+  z-index: 9999;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
+  display: flex;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
 }
 
-/* Popup content */
-#popup > div {
-  background: rgba(255,255,255,0.95);
+/* Show popup with fade-in */
+#popup.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Popup Card */
+#popup > div, .popup-card {
+  background: rgba(255, 255, 255, 0.95);
   color: #011f4b;
   padding: 25px;
   border-radius: 12px;
@@ -145,9 +32,16 @@ border-radius:10px;
   max-width: 400px;
   width: 90%;
   box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  transform: translateY(-20px);
+  transition: transform 0.4s ease;
 }
 
-/* Buttons inside popup */
+/* Animate card when popup shows */
+#popup.show > div {
+  transform: translateY(0);
+}
+
+/* Popup Buttons */
 #popup button {
   background: #00f5d4;
   border: none;
@@ -157,34 +51,9 @@ border-radius:10px;
   border-radius: 8px;
   transition: 0.3s;
 }
+
 #popup button:hover {
   background: #00b4d8;
   color: white;
   transform: scale(1.05);
-}
-
-/* Popup overlay */
-#popup {
-  display: none; /* hidden by default */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(5px); /* background blur */
-  background-color: rgba(0, 0, 0, 0.4); /* semi-transparent dark overlay */
-  z-index: 9999;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-}
-
-/* Popup card */
-.popup-card {
-  max-width: 400px;
-  text-align: center;
-  padding: 20px;
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
