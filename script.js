@@ -3,6 +3,8 @@ let marker
 let lat = 0
 let lng = 0
 
+const API_URL = "https://script.google.com/macros/s/AKfycbzIrGemDc0CNREzRkgUttSK77uYxxV1zl6hnVDxeo07QS_fQTHmDZJNa_WTzdkHk-p7/exec"
+
 
 
 function toggleMenu(){
@@ -56,16 +58,12 @@ if(marker) map.removeLayer(marker)
 
 marker = L.marker([lat,lng]).addTo(map)
 
-})
-
-loadReports()   // ← ADD THIS LINE HERE
-
-}
-
 document.getElementById("selectedLocation").innerText =
 "Selected: "+lat.toFixed(5)+" , "+lng.toFixed(5)
 
 })
+
+loadReports()
 
 }
 
@@ -94,7 +92,9 @@ document.getElementById("selectedLocation").innerText =
 
 try{
 
-let response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`)
+let response = await fetch(
+`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`
+)
 
 let data = await response.json()
 
@@ -114,7 +114,12 @@ console.log(error)
 
 
 
-document.getElementById("photo").addEventListener("change",function(){
+document.addEventListener("DOMContentLoaded",()=>{
+
+let photoInput = document.getElementById("photo")
+let preview = document.getElementById("photoPreview")
+
+photoInput.addEventListener("change",function(){
 
 let file = this.files[0]
 
@@ -124,10 +129,8 @@ let reader = new FileReader()
 
 reader.onload=function(e){
 
-let preview = document.getElementById("photoPreview")
-
 preview.src = e.target.result
-preview.style.display="block"
+preview.style.display = "block"
 
 }
 
@@ -135,13 +138,13 @@ reader.readAsDataURL(file)
 
 })
 
+})
 
 
-const API_URL = "https://script.google.com/macros/s/AKfycbzIrGemDc0CNREzRkgUttSK77uYxxV1zl6hnVDxeo07QS_fQTHmDZJNa_WTzdkHk-p7/exec"
 
 function submitReport(){
 
-if(lat===0){
+if(lat === 0){
 alert("Please select location")
 return
 }
@@ -176,7 +179,11 @@ alert("Report Submitted!\nTracking Number: "+tracking)
 
 }
 
+
+
 async function loadReports(){
+
+try{
 
 let response = await fetch(API_URL)
 
@@ -184,12 +191,20 @@ let reports = await response.json()
 
 reports.forEach(r=>{
 
-L.marker([r.lat,r.lng])
+if(!r.lat || !r.lng) return
+
+L.marker([parseFloat(r.lat),parseFloat(r.lng)])
 .addTo(map)
 .bindPopup(
-"<b>"+r.issue+"</b><br>"+r.location+"<br>Status: "+r.status
+"<b>"+r.issue+"</b><br>"+r.location+"<br>Status: "+(r.status || "Pending")
 )
 
 })
+
+}catch(err){
+
+console.log("Error loading reports",err)
+
+}
 
 }
