@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>RoadWatch PH</title>
 
-<!-- Leaflet -->
+<link rel="stylesheet" href="style.css">
+
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-<!-- External CSS -->
-<link rel="stylesheet" href="style.css">
-
 </head>
+
 <body>
 
 <header>
@@ -21,72 +23,117 @@
 </header>
 
 <div class="sidebar" id="menu">
+
 <button onclick="show('home')">Home</button>
 <button onclick="show('submit')">Submit Report</button>
 <button onclick="show('mapPage')">Road Map</button>
 <button onclick="show('tracking')">Tracking</button>
+
 </div>
+
+<!-- HOME -->
 
 <section id="home" class="active">
+
 <div class="card">
-<h2>Welcome to RoadWatch PH</h2>
-<p>Citizen-powered road monitoring platform. Report potholes, cracks, flooding, and unsafe road conditions.</p>
+
+<h2>Welcome</h2>
+
+<p>
+RoadWatch PH is a citizen powered road monitoring platform
+for reporting potholes, cracks, flooding, and road hazards.
+</p>
+
 </div>
+
 </section>
+
+<!-- SUBMIT -->
 
 <section id="submit">
+
 <div class="card">
+
 <h2>Submit Road Issue</h2>
 
-<h3>Reporter Information</h3>
-<div style="display:flex; gap:10px; flex-wrap:wrap;">
-<input id="lastname" placeholder="Last Name" style="flex:1;">
-<input id="firstname" placeholder="First Name" style="flex:1;">
-<input id="mi" placeholder="M.I." style="width:60px;">
-</div>
+<input id="lastname" placeholder="Last Name">
+<input id="firstname" placeholder="First Name">
+<input id="email" placeholder="Email">
 
-<input id="email" placeholder="Email Address">
-<input id="phone" placeholder="Phone Number">
+<input id="locationText" placeholder="Road Name">
 
-<h3>Road Location</h3>
-<input id="locationText" placeholder="Street / Road Name">
-
-<button onclick="detectLocation()" class="detectBtn">
-Auto-detect My Location
+<button class="detectBtn" onclick="detectLocation()">
+Auto Detect Location
 </button>
 
-<h3>Pin Location on Map</h3>
+<h3>Select Location</h3>
+
 <div id="reportMap"></div>
-<p id="selectedLocation">No location selected</p>
 
-<h3>Road Issue Details</h3>
-<textarea id="issue" placeholder="Describe the road issue"></textarea>
+<p id="selectedLocation">
+No location selected
+</p>
 
-<h3>Upload Photo (Optional)</h3>
-<input type="file" id="photo">
+<textarea id="issue" placeholder="Describe road issue"></textarea>
 
-<button class="submit" onclick="submitReport()">Submit Report</button>
+<button class="submit" onclick="submitReport()">
+Submit Report
+</button>
 
 </div>
+
 </section>
 
-<div id="popup">
-<div>
-<h3>Report Submitted Successfully!</h3>
-<p id="trackInfo"></p>
-<button onclick="closePopup()">Done</button>
-<button onclick="newReport()">Submit Another Report</button>
-</div>
-</div>
+<!-- MAP -->
 
 <section id="mapPage">
+
 <div class="card">
-<h2>Reported Road Issues Map</h2>
+
+<h2>Reported Road Issues</h2>
+
 <div id="map"></div>
+
 </div>
+
 </section>
 
-<!-- External JS -->
+<!-- TRACKING -->
+
+<section id="tracking">
+
+<div class="card">
+
+<h2>Track Report</h2>
+
+<input id="trackInput" placeholder="Enter Tracking Number">
+
+<button class="submit" onclick="searchTracking()">
+Search
+</button>
+
+<div id="trackResult"></div>
+
+</div>
+
+</section>
+
+<!-- POPUP -->
+
+<div id="popup">
+
+<div>
+
+<h3>Report Submitted</h3>
+
+<p id="trackInfo"></p>
+
+<button onclick="closePopup()">OK</button>
+
+</div>
+
+</div>
+
 <script src="script.js"></script>
 
 </body>
