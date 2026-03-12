@@ -1,176 +1,106 @@
 body{
-
 font-family:Arial;
 margin:0;
 background:#0a2540;
 color:white;
-
 }
-
-
 
 header{
-
 display:flex;
 align-items:center;
-padding:15px;
 background:#001f3f;
-
+padding:15px;
 }
 
-
-
 .menuBtn{
-
 font-size:26px;
 cursor:pointer;
 margin-right:15px;
-
 }
 
-
-
 .sidebar{
-
 position:fixed;
-top:0;
 left:-220px;
+top:0;
 width:220px;
 height:100%;
 background:#001f3f;
 transition:0.3s;
-padding-top:70px;
-
+padding-top:60px;
 }
 
-
-
 .sidebar button{
-
 display:block;
 width:100%;
 padding:15px;
 border:none;
 background:none;
 color:white;
-text-align:left;
 cursor:pointer;
-
+text-align:left;
 }
-
-
 
 .sidebar button:hover{
-
 background:#003566;
-
 }
 
-
-
 section{
-
 display:none;
 padding:20px;
 max-width:900px;
 margin:auto;
-
 }
-
-
 
 .active{
-
 display:block;
-
 }
 
-
-
 .card{
-
 background:#001d3d;
 padding:25px;
 border-radius:10px;
-
 }
-
-
-
-h2{
-
-color:#00d4ff;
-text-align:center;
-
-}
-
-
 
 .row{
-
 display:flex;
 gap:10px;
 margin-bottom:10px;
-
 }
-
-
 
 .row input{
-
 flex:1;
-
 }
 
-
-
 input, textarea{
-
 width:100%;
-padding:12px;
+padding:10px;
 border-radius:6px;
 border:1px solid #00d4ff;
 background:#002855;
 color:white;
-
 }
-
-
 
 textarea{
-
-height:90px;
-
+height:80px;
 }
 
-
-
 #reportMap{
-
 height:300px;
 margin-top:10px;
 border-radius:10px;
-
 }
 
-
-
 .detectBtn{
-
 margin-top:10px;
 padding:10px;
-border:none;
 background:#0077b6;
+border:none;
 color:white;
 border-radius:6px;
 cursor:pointer;
-
 }
 
-
-
 .submitBtn{
-
 margin-top:20px;
 padding:12px;
 width:100%;
@@ -179,16 +109,11 @@ border:none;
 border-radius:8px;
 font-weight:bold;
 cursor:pointer;
-
 }
 
-
-
 #photoPreview{
-
+display:none;
 margin-top:10px;
 max-width:100%;
-display:none;
 border-radius:10px;
-
 }
