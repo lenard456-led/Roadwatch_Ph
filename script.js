@@ -126,8 +126,8 @@ function submitReport() {
     .then(res => res.text())
     .then(res => {
       // Show the popup correctly
-      document.getElementById("trackInfo").innerText = "Tracking Number: " + tracking;
-      document.getElementById("popup").classList.add("show"); // use class for blur/fade effect
+       document.getElementById("trackInfo").innerText = "Tracking Number: " + tracking;
+      document.getElementById("popup").classList.add("show"); // use class for fade-in
     })
     .catch(err => {
       console.error(err);
@@ -176,6 +176,7 @@ async function loadReports() {
     console.log("Error loading reports", err);
   }
 }
+
 
 
 
