@@ -1,140 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>RoadWatch PH</title>
 
+<!-- Styles -->
 <link rel="stylesheet" href="style.css">
 
+<!-- Leaflet -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 </head>
-
 <body>
 
 <header>
-<span class="menuBtn" onclick="openMenu()">☰</span>
-<h2>RoadWatch PH</h2>
+  <span class="menuBtn" onclick="openMenu()">☰</span>
+  <h2>RoadWatch PH</h2>
 </header>
 
 <div class="sidebar" id="menu">
-
-<button onclick="show('home')">Home</button>
-<button onclick="show('submit')">Submit Report</button>
-<button onclick="show('mapPage')">Road Map</button>
-<button onclick="show('tracking')">Tracking</button>
-
+  <button onclick="show('home')">Home</button>
+  <button onclick="show('submit')">Submit Report</button>
+  <button onclick="show('mapPage')">Road Map</button>
+  <button onclick="show('tracking')">Tracking</button>
+  <button onclick="show('dashboard')">Dashboard</button>
 </div>
 
 <!-- HOME -->
-
 <section id="home" class="active">
-
-<div class="card">
-
-<h2>Welcome</h2>
-
-<p>
-RoadWatch PH is a citizen powered road monitoring platform
-for reporting potholes, cracks, flooding, and road hazards.
-</p>
-
-</div>
-
+  <div class="card glass-card">
+    <h2>Welcome to RoadWatch PH</h2>
+    <p>Citizen-powered road monitoring platform. Report potholes, cracks, flooding, and unsafe road conditions. LGUs and DPWH can update the repair status in real-time.</p>
+  </div>
 </section>
 
-<!-- SUBMIT -->
-
+<!-- SUBMIT REPORT -->
 <section id="submit">
+  <div class="card glass-card">
+    <h2>Submit Road Issue</h2>
 
-<div class="card">
+    <h3>Reporter Information</h3>
+    <div class="flex-row">
+      <input id="lastname" placeholder="Last Name">
+      <input id="firstname" placeholder="First Name">
+    </div>
+    <input id="email" placeholder="Email">
 
-<h2>Submit Road Issue</h2>
+    <h3>Road Location</h3>
+    <input id="locationText" placeholder="Street / Road Name">
+    <button class="detectBtn" onclick="detectLocation()">Auto-detect My Location</button>
 
-<input id="lastname" placeholder="Last Name">
-<input id="firstname" placeholder="First Name">
-<input id="email" placeholder="Email">
+    <h3>Pin Location on Map</h3>
+    <div id="reportMap"></div>
+    <p id="selectedLocation">No location selected</p>
 
-<input id="locationText" placeholder="Road Name">
+    <h3>Road Issue Details</h3>
+    <textarea id="issue" placeholder="Describe the road issue"></textarea>
 
-<button class="detectBtn" onclick="detectLocation()">
-Auto Detect Location
-</button>
-
-<h3>Select Location</h3>
-
-<div id="reportMap"></div>
-
-<p id="selectedLocation">
-No location selected
-</p>
-
-<textarea id="issue" placeholder="Describe road issue"></textarea>
-
-<button class="submit" onclick="submitReport()">
-Submit Report
-</button>
-
-</div>
-
+    <button class="submit" onclick="submitReport()">Submit Report</button>
+  </div>
 </section>
 
-<!-- MAP -->
-
+<!-- MAP PAGE -->
 <section id="mapPage">
-
-<div class="card">
-
-<h2>Reported Road Issues</h2>
-
-<div id="map"></div>
-
-</div>
-
+  <div class="card glass-card">
+    <h2>Reported Road Issues Map</h2>
+    <div id="map"></div>
+  </div>
 </section>
 
 <!-- TRACKING -->
-
 <section id="tracking">
+  <div class="card glass-card">
+    <h2>Track Your Report</h2>
+    <input id="trackInput" placeholder="Enter Tracking Number">
+    <button class="submit" onclick="searchTracking()">Search</button>
+    <div id="trackResult"></div>
+  </div>
+</section>
 
-<div class="card">
-
-<h2>Track Report</h2>
-
-<input id="trackInput" placeholder="Enter Tracking Number">
-
-<button class="submit" onclick="searchTracking()">
-Search
-</button>
-
-<div id="trackResult"></div>
-
-</div>
-
+<!-- DASHBOARD -->
+<section id="dashboard">
+  <div class="card glass-card">
+    <h2>Road Issues Dashboard</h2>
+    <div id="stats">
+      <p>Total Reports: <span id="totalReports">0</span></p>
+      <p>Fixed: <span id="fixedReports">0</span></p>
+      <p>Ongoing: <span id="ongoingReports">0</span></p>
+      <p>Pending: <span id="pendingReports">0</span></p>
+    </div>
+  </div>
 </section>
 
 <!-- POPUP -->
-
 <div id="popup">
-
-<div>
-
-<h3>Report Submitted</h3>
-
-<p id="trackInfo"></p>
-
-<button onclick="closePopup()">OK</button>
-
-</div>
-
+  <div>
+    <h3>Report Submitted Successfully!</h3>
+    <p id="trackInfo"></p>
+    <button onclick="closePopup()">Done</button>
+    <button onclick="newReport()">Submit Another Report</button>
+  </div>
 </div>
 
 <script src="script.js"></script>
-
 </body>
 </html>
