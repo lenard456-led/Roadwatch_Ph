@@ -1,125 +1,157 @@
+/* BODY & HEADER */
 body{
-margin:0;
-font-family:Arial;
-background:#011f4b;
-color:white;
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#011f4b;
+  color:white;
 }
 
 header{
-background:#023e8a;
-padding:15px;
-display:flex;
-align-items:center;
-position:fixed;
-width:100%;
-z-index:100;
+  background:#023e8a;
+  padding:15px;
+  display:flex;
+  align-items:center;
+  position:fixed;
+  width:100%;
+  z-index:100;
+  box-shadow:0 3px 10px rgba(0,0,0,0.4);
 }
 
+header h2{margin:0;}
 .menuBtn{
-font-size:26px;
-cursor:pointer;
-margin-right:10px;
+  font-size:26px;
+  cursor:pointer;
+  margin-right:15px;
 }
 
+/* SIDEBAR */
 .sidebar{
-height:100%;
-width:0;
-position:fixed;
-top:0;
-left:0;
-background:#011f4b;
-overflow-x:hidden;
-transition:0.3s;
-padding-top:60px;
+  height:100%;
+  width:0;
+  position:fixed;
+  top:0;
+  left:0;
+  background:#011f4b;
+  overflow-x:hidden;
+  transition:0.3s;
+  padding-top:60px;
+  z-index:1000;
 }
 
 .sidebar button{
-display:block;
-width:100%;
-padding:15px;
-background:none;
-border:none;
-color:white;
-cursor:pointer;
-text-align:left;
+  display:block;
+  width:100%;
+  padding:15px;
+  border:none;
+  background:none;
+  color:white;
+  text-align:left;
+  cursor:pointer;
+  font-size:16px;
 }
-
 .sidebar button:hover{
-background:#0077b6;
+  background:#0077b6;
 }
 
+/* SECTIONS */
 section{
-display:none;
-padding:20px;
-margin-top:60px;
-max-width:900px;
-margin:auto;
+  display:none;
+  padding:20px;
+  margin-top:70px;
+  max-width:900px;
+  margin:auto;
 }
+.active{display:block;}
 
-.active{
-display:block;
-}
-
+/* CARDS */
 .card{
-background:#022c5f;
-padding:20px;
-border-radius:12px;
-box-shadow:0 4px 10px rgba(0,0,0,0.4);
+  padding:25px;
+  border-radius:14px;
+  margin-bottom:20px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.5);
+  background:#022c5f;
+}
+.glass-card{
+  background: rgba(2,44,95,0.85);
+  backdrop-filter: blur(10px);
+  border:1px solid rgba(0,180,240,0.5);
 }
 
+/* INPUTS & TEXTAREA */
 input,textarea{
-width:100%;
-padding:10px;
-margin:8px 0;
-border-radius:6px;
-border:none;
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border-radius:8px;
+  border:1px solid #00b4d8;
+  background:#023e8a;
+  color:white;
+}
+input:focus,textarea:focus{
+  outline:none;
+  border:2px solid #00f5d4;
+  background:#034078;
 }
 
-textarea{
-height:100px;
-}
+/* TITLES */
+h2{color:#00b4d8; text-align:center; margin-bottom:20px;}
+h3{color:#00f5d4; margin-top:15px;}
 
+/* BUTTONS */
 .submit{
-background:#00f5d4;
-border:none;
-padding:12px;
-border-radius:8px;
-width:100%;
-font-weight:bold;
-cursor:pointer;
+  background:#00f5d4;
+  color:#011f4b;
+  font-weight:bold;
+  border-radius:10px;
+  padding:12px;
+  cursor:pointer;
+  width:100%;
+  transition:0.3s;
+  border:none;
+}
+.submit:hover{
+  background:#00b4d8;
+  color:white;
+  transform:scale(1.03);
+  box-shadow:0 0 12px rgba(0,180,240,0.6);
 }
 
 .detectBtn{
-background:#00b4d8;
-border:none;
-padding:10px;
-border-radius:8px;
-width:100%;
-margin-bottom:10px;
-color:white;
+  background:#00b4d8;
+  border:none;
+  padding:10px;
+  border-radius:10px;
+  width:100%;
+  margin-bottom:10px;
+  color:white;
+  cursor:pointer;
 }
+.detectBtn:hover{background:#0096c7;}
 
-#reportMap,#map{
-height:350px;
-border-radius:10px;
-margin-top:10px;
-}
+/* MAP */
+#reportMap,#map{width:100%; height:350px; border-radius:12px; border:2px solid #00b4d8; margin-top:10px;}
 
+/* FLEX ROW */
+.flex-row{display:flex; gap:10px; flex-wrap:wrap;}
+
+/* POPUP */
 #popup{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.7);
-justify-content:center;
-align-items:center;
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.7);
+  justify-content:center;
+  align-items:center;
+}
+#popup>div{
+  background:white;
+  color:black;
+  padding:25px;
+  border-radius:12px;
+  text-align:center;
+  width:350px;
 }
 
-#popup div{
-background:white;
-color:black;
-padding:25px;
-border-radius:10px;
-}
+/* DASHBOARD STATS */
+#stats p{margin:8px 0; font-weight:bold;}
