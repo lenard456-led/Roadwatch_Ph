@@ -64,15 +64,23 @@ onAuthStateChanged(auth, (user) => {
 
 <!-- HOME -->
 
-<section id="home" class="active">
+<section id="home" class="active hero">
 
-  <div class="card">
+<div class="hero-content">
 
-    <h2>Welcome to RoadWatch PH</h2>
+<h1>RoadWatch PH</h1>
 
-    <p>Report potholes, cracks, flooding, and road hazards.</p>
+<p>
+Helping communities report potholes, road cracks,
+flooding, and other road hazards to improve
+road safety and infrastructure maintenance.
+</p>
 
-  </div>
+<button class="heroBtn" onclick="showPage('submit')">
+Report a Road Issue
+</button>
+
+</div>
 
 </section>
 
@@ -199,4 +207,5 @@ onAuthStateChanged(auth, (user) => {
 
 </body>
 </html>
+
 
