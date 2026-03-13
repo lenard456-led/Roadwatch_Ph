@@ -1,42 +1,20 @@
-const auth = firebase.auth();
+// auth.js
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { firebaseConfig } from './firebase-config.js';
 
-function login() {
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  auth.signInWithEmailAndPassword(email, password)
-  .then(() => {
-
-    window.location.href = "index.html";
-
-  })
-  .catch(err => alert(err.message));
+export function login(email, password) {
+  return signInWithEmailAndPassword(auth, email, password);
 }
 
-function register() {
-
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  auth.createUserWithEmailAndPassword(email, password)
-  .then(() => {
-
-    window.location.href = "index.html";
-
-  })
-  .catch(err => alert(err.message));
+export function register(email, password) {
+  return createUserWithEmailAndPassword(auth, email, password);
 }
 
-function googleLogin() {
-
-  const provider = new firebase.auth.GoogleAuthProvider();
-
-  auth.signInWithPopup(provider)
-  .then(() => {
-
-    window.location.href = "index.html";
-
-  });
-
+export function googleLogin() {
+  const provider = new GoogleAuthProvider();
+  return signInWithPopup(auth, provider);
 }
