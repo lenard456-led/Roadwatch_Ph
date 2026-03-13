@@ -45,18 +45,63 @@ onAuthStateChanged(auth, (user) => {
   <button onclick="showPage('submit')">Submit Report</button>
 </div>
 
-<!-- ===== HOME HERO ===== -->
-<section id="home" class="active hero">
+<!-- ===== HOME HERO + GALLERY ===== -->
+<section id="home" class="hero">
+
+  <!-- Hero Carousel -->
+  <div class="hero-carousel">
+    <div class="carousel-slide active" style="background-image:url('https://images.unsplash.com/photo-1581092580497-253c19747a8b');"></div>
+    <div class="carousel-slide" style="background-image:url('https://images.unsplash.com/photo-1607746882042-944635dfe10e');"></div>
+    <div class="carousel-slide" style="background-image:url('https://images.unsplash.com/photo-1608889170459-2f8cc8f452ed');"></div>
+    <div class="carousel-slide" style="background-image:url('https://images.unsplash.com/photo-1549924231-f129b911e442');"></div>
+  </div>
+
+  <!-- Hero Content -->
   <div class="hero-content">
     <h1>RoadWatch PH</h1>
     <p>
-      Helping communities report potholes, road cracks,
-      flooding, and other road hazards to improve
-      road safety and infrastructure maintenance.
+      Helping communities report potholes, cracks, flooding, and other road hazards
+      to improve road safety and infrastructure maintenance.
     </p>
     <button class="heroBtn" onclick="showPage('submit')">
       Report a Road Issue
     </button>
+  </div>
+
+</section>
+
+<!-- ===== Road Issue Gallery ===== -->
+<section class="road-gallery">
+  <h2>Common Road Issues</h2>
+  <div class="gallery-grid">
+    <img src="https://images.unsplash.com/photo-1581092580497-253c19747a8b" alt="Pothole">
+    <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e" alt="Flooded road">
+    <img src="https://images.unsplash.com/photo-1608889170459-2f8cc8f452ed" alt="Cracked asphalt">
+    <img src="https://images.unsplash.com/photo-1549924231-f129b911e442" alt="Damaged road">
+    <img src="https://images.unsplash.com/photo-1518173946684-18a0586c51f6" alt="Road construction">
+    <img src="https://images.unsplash.com/photo-1572007059421-3a17d7ffedc6" alt="Traffic hazard">
+  </div>
+</section>
+
+<!-- ===== Feature Cards ===== -->
+<section class="features">
+  <h2>Get Started</h2>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <h3>Report Road Issue</h3>
+      <p>Submit potholes, cracks, or flooding issues in your area.</p>
+      <button onclick="showPage('submit')">Report Now</button>
+    </div>
+    <div class="feature-card">
+      <h3>View Map</h3>
+      <p>See reported road issues across your city in real-time.</p>
+      <button onclick="showPage('submit')">View Map</button>
+    </div>
+    <div class="feature-card">
+      <h3>Track Status</h3>
+      <p>Check the progress of your submitted road reports.</p>
+      <button onclick="alert('Coming Soon')">Track Report</button>
+    </div>
   </div>
 </section>
 
@@ -111,3 +156,4 @@ onAuthStateChanged(auth, (user) => {
 <script src="script.js"></script>
 </body>
 </html>
+
