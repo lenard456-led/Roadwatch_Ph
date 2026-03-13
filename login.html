@@ -1,21 +1,56 @@
-document.getElementById("trackInfo").innerText = "Tracking Number: " + tracking;
-      document.getElementById("popup").classList.add("show"); // use class for fade-in
-    })
-    .catch(err => {
-      console.error(err);
-      alert("Submission failed. Check your API or internet connection.");
-    });
-}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login - RoadWatch PH</title>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
 
-// Hide popup
-function closePopup() {
-  document.getElementById("popup").classList.remove("show");
-  showPage('home');
-  resetForm();
-}
+  <script src="firebase-config.js"></script>
+  <script src="auth.js"></script>
 
-function newReport() {
-  document.getElementById("popup").classList.remove("show");
-  resetForm();
-  showPage('submit');
-}
+  <style>
+    body{
+      font-family:Arial;
+      background:#0b1a2f;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      color:white;
+    }
+
+    .loginCard{
+      background:#132a4a;
+      padding:25px;
+      border-radius:10px;
+      width:300px;
+    }
+
+    input,button{
+      width:100%;
+      padding:10px;
+      margin:5px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="loginCard">
+
+<h2>RoadWatch PH Login</h2>
+
+<input id="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+<button onclick="register()">Register</button>
+
+<hr>
+
+<button onclick="googleLogin()">Login with Google</button>
+
+</div>
+
+</body>
+</html>
