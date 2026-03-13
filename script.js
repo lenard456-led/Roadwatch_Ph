@@ -175,6 +175,22 @@ async function loadReports() {
   }
 }
 
+// Logout (Firebase v10)
+async function logout() {
+
+  const { getAuth, signOut } = await import(
+    "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"
+  );
+
+  const auth = getAuth();
+
+  signOut(auth).then(() => {
+
+    window.location.replace("login.html");
+
+  });
+
+}
 
 
 
