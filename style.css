@@ -204,3 +204,68 @@ textarea {
   color: white;
   transform: scale(1.05);
 }
+
+/* ===== HOME HERO ===== */
+
+.hero{
+
+height:92vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+
+background:
+linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.7)),
+url("https://images.unsplash.com/photo-1503376780353-7e6692767b70");
+
+background-size:cover;
+background-position:center;
+
+}
+
+/* Hero content */
+
+.hero-content{
+max-width:750px;
+padding:20px;
+}
+
+.hero h1{
+font-size:55px;
+margin-bottom:10px;
+letter-spacing:1px;
+}
+
+.hero p{
+font-size:18px;
+margin-bottom:30px;
+opacity:0.9;
+}
+
+/* Call-to-action */
+
+.heroBtn{
+
+background:#00f5d4;
+color:#011f4b;
+
+border:none;
+padding:15px 35px;
+
+font-size:18px;
+font-weight:bold;
+
+border-radius:10px;
+cursor:pointer;
+
+transition:0.3s;
+
+}
+
+.heroBtn:hover{
+background:#00b4d8;
+color:white;
+transform:scale(1.05);
+}
