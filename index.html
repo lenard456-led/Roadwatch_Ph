@@ -12,200 +12,102 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-
 <!-- Firebase v10 -->
 <script type="module">
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
 import { firebaseConfig } from "./firebase-config.js";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-
 // Protect page (must login first)
-
 onAuthStateChanged(auth, (user) => {
-
   if (!user) {
-
     window.location.href = "login.html";
-
   }
-
 });
-
 </script>
-
 </head>
+
 <body>
 
-
-
+<!-- ===== HEADER ===== -->
 <header>
   <span class="menuBtn" onclick="toggleMenu()">☰</span>
   <h2>RoadWatch PH</h2>
-
-  <button onclick="logout()" style="margin-left:auto">
-    Logout
-  </button>
+  <button onclick="logout()" style="margin-left:auto">Logout</button>
 </header>
 
-
-
+<!-- ===== SIDEBAR ===== -->
 <div class="sidebar" id="menu">
   <button onclick="showPage('home')">Home</button>
   <button onclick="showPage('submit')">Submit Report</button>
 </div>
 
-
-
-<!-- HOME -->
-
+<!-- ===== HOME HERO ===== -->
 <section id="home" class="active hero">
-
-<div class="hero-content">
-
-<h1>RoadWatch PH</h1>
-
-<p>
-Helping communities report potholes, road cracks,
-flooding, and other road hazards to improve
-road safety and infrastructure maintenance.
-</p>
-
-<button class="heroBtn" onclick="showPage('submit')">
-Report a Road Issue
-</button>
-
-</div>
-
+  <div class="hero-content">
+    <h1>RoadWatch PH</h1>
+    <p>
+      Helping communities report potholes, road cracks,
+      flooding, and other road hazards to improve
+      road safety and infrastructure maintenance.
+    </p>
+    <button class="heroBtn" onclick="showPage('submit')">
+      Report a Road Issue
+    </button>
+  </div>
 </section>
 
-
-
-<!-- SUBMIT REPORT -->
-
+<!-- ===== SUBMIT REPORT ===== -->
 <section id="submit">
-
   <div class="card">
-
     <h2>Submit Road Issue</h2>
 
-
     <h3>Reporter Information</h3>
-
     <div class="row">
       <input id="lastname" placeholder="Last Name">
       <input id="firstname" placeholder="First Name">
       <input id="mi" placeholder="M.I.">
     </div>
 
-
     <div class="row">
       <input id="email" placeholder="Email">
       <input id="phone" placeholder="Mobile Number">
     </div>
 
-
-
     <h3>Road Location</h3>
-
-    <input id="locationText"
-           placeholder="Street / Road Name (Type or Auto-detect)" />
-
-
-    <button class="detectBtn"
-            onclick="detectLocation()">
-
-      Auto-detect My Location
-
-    </button>
-
-
+    <input id="locationText" placeholder="Street / Road Name (Type or Auto-detect)" />
+    <button class="detectBtn" onclick="detectLocation()">Auto-detect My Location</button>
 
     <h3>Select Location</h3>
-
     <div id="reportMap"></div>
-
-    <p id="selectedLocation">
-
-      No location selected
-
-    </p>
-
-
+    <p id="selectedLocation">No location selected</p>
 
     <h3>Road Issue</h3>
-
-    <textarea id="issue"
-              placeholder="Describe the issue"></textarea>
-
-
+    <textarea id="issue" placeholder="Describe the issue"></textarea>
 
     <h3>Upload Photo</h3>
-
     <input type="file" id="photo">
-
     <img id="photoPreview">
 
-
-
-    <button class="submitBtn"
-            onclick="submitReport()">
-
-      Submit Report
-
-    </button>
-
+    <button class="submitBtn" onclick="submitReport()">Submit Report</button>
   </div>
-
 </section>
 
-
-
-<!-- POPUP -->
-
+<!-- ===== POPUP ===== -->
 <div id="popup">
-
   <div class="popup-card">
-
     <h3>Report Submitted Successfully!</h3>
-
-    <p id="trackInfo"
-       style="font-weight:bold;
-              font-size:18px;
-              margin:15px 0;">
-    </p>
-
-
-    <div style="
-        display:flex;
-        gap:15px;
-        margin-top:10px;
-    ">
-
-      <button onclick="closePopup()">
-        Done
-      </button>
-
-      <button onclick="newReport()">
-        Submit Another
-      </button>
-
+    <p id="trackInfo" style="font-weight:bold; font-size:18px; margin:15px 0;"></p>
+    <div style="display:flex; gap:15px; margin-top:10px;">
+      <button onclick="closePopup()">Done</button>
+      <button onclick="newReport()">Submit Another</button>
     </div>
-
   </div>
-
 </div>
 
-
-
 <script src="script.js"></script>
-
 </body>
 </html>
-
-
