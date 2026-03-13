@@ -14,46 +14,40 @@ import { firebaseConfig } from "./firebase-config.js";
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// ----------- LOGIN -----------
-export function login() {
+// Login function
+export async function login() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      window.location.href = "index.html";
-    })
-    .catch(err => alert(err.message));
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    window.location.href = "index.html";
+  } catch (err) {
+    alert(err.message);
+  }
 }
 
-// ----------- REGISTER -----------
-export function register() {
+// Register function
+export async function register() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  createUserWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      window.location.href = "index.html";
-    })
-    .catch(err => alert(err.message));
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+    window.location.href = "index.html";
+  } catch (err) {
+    alert(err.message);
+  }
 }
 
-// ----------- GOOGLE LOGIN -----------
-export function googleLogin() {
+// Google Login function
+export async function googleLogin() {
   const provider = new GoogleAuthProvider();
 
-  signInWithPopup(auth, provider)
-    .then(() => {
-      window.location.href = "index.html";
-    })
-    .catch(err => alert(err.message));
-}
-
-// ----------- LOGOUT -----------
-export function logout() {
-  auth.signOut()
-    .then(() => {
-      window.location.href = "login.html";
-    })
-    .catch(err => console.log(err));
+  try {
+    await signInWithPopup(auth, provider);
+    window.location.href = "index.html";
+  } catch (err) {
+    alert(err.message);
+  }
 }
