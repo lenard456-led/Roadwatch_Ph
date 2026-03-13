@@ -2,7 +2,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { firebaseConfig } from "./firebase-config.js";
-
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
@@ -142,3 +141,4 @@ function nextSlide() {
   slides[currentSlide].classList.add("active");
 }
 setInterval(nextSlide, 5000);
+
