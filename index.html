@@ -5,33 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RoadWatch PH</title>
 
-<!-- STYLE -->
 <link rel="stylesheet" href="style.css">
 
 <!-- Leaflet Map -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
+<!-- Firebase + Scripts -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { firebaseConfig } from "./firebase-config.js";
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// Redirect to login if not logged in
+onAuthStateChanged(auth, user => {
+  if (!user) window.location.href = "login.html";
+});
+</script>
 </head>
 
 <body>
 
-<!-- ===== HEADER ===== -->
 <header>
   <span class="menuBtn" onclick="toggleMenu()">☰</span>
   <h2>RoadWatch PH</h2>
-  <button onclick="logout()" style="margin-left:auto">Logout</button>
+  <button onclick="import('./auth.js').then(m => m.logout())" style="margin-left:auto">Logout</button>
 </header>
 
-<!-- ===== SIDEBAR ===== -->
 <div class="sidebar" id="menu">
   <button onclick="showPage('home')">Home</button>
   <button onclick="showPage('submit')">Submit Report</button>
 </div>
 
-<!-- ===== HOME HERO + GALLERY ===== -->
+<!-- HOME HERO -->
 <section id="home" class="hero">
-  <!-- Hero Carousel -->
   <div class="hero-carousel">
     <div class="carousel-slide active" style="background-image:url('https://images.unsplash.com/photo-1581092580497-253c19747a8b?auto=format&fit=crop&w=1470&q=80');"></div>
     <div class="carousel-slide" style="background-image:url('https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=1470&q=80');"></div>
@@ -39,15 +49,14 @@
     <div class="carousel-slide" style="background-image:url('https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=1470&q=80');"></div>
   </div>
 
-  <!-- Hero Content -->
   <div class="hero-content">
     <h1>RoadWatch PH</h1>
-    <p>Helping communities report potholes, cracks, flooding, and other road hazards to improve road safety and infrastructure maintenance.</p>
+    <p>Helping communities report potholes, cracks, flooding, and other road hazards to improve road safety.</p>
     <button class="heroBtn" onclick="showPage('submit')">Report a Road Issue</button>
   </div>
 </section>
 
-<!-- ===== Road Gallery ===== -->
+<!-- ROAD ISSUE GALLERY -->
 <section class="road-gallery">
   <h2>Common Road Issues</h2>
   <div class="gallery-grid">
@@ -55,70 +64,34 @@
     <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=800&q=80" alt="Flooded road">
     <img src="https://images.unsplash.com/photo-1608889170459-2f8cc8f452ed?auto=format&fit=crop&w=800&q=80" alt="Cracked asphalt">
     <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=800&q=80" alt="Damaged road">
-    <img src="https://images.unsplash.com/photo-1518173946684-18a0586c51f6?auto=format&fit=crop&w=800&q=80" alt="Road construction">
-    <img src="https://images.unsplash.com/photo-1572007059421-3a17d7ffedc6?auto=format&fit=crop&w=800&q=80" alt="Traffic hazard">
   </div>
 </section>
 
-<!-- ===== Feature Cards ===== -->
-<section class="features">
-  <h2>Get Started</h2>
-  <div class="feature-grid">
-    <div class="feature-card">
-      <h3>Report Road Issue</h3>
-      <p>Submit potholes, cracks, or flooding issues in your area.</p>
-      <button onclick="showPage('submit')">Report Now</button>
-    </div>
-    <div class="feature-card">
-      <h3>View Map</h3>
-      <p>See reported road issues across your city in real-time.</p>
-      <button onclick="showPage('submit')">View Map</button>
-    </div>
-    <div class="feature-card">
-      <h3>Track Status</h3>
-      <p>Check the progress of your submitted road reports.</p>
-      <button onclick="alert('Coming Soon')">Track Report</button>
-    </div>
-  </div>
-</section>
-
-<!-- ===== SUBMIT REPORT ===== -->
+<!-- SUBMIT REPORT SECTION -->
 <section id="submit">
   <div class="card">
     <h2>Submit Road Issue</h2>
-
-    <h3>Reporter Information</h3>
     <div class="row">
       <input id="lastname" placeholder="Last Name">
       <input id="firstname" placeholder="First Name">
       <input id="mi" placeholder="M.I.">
     </div>
-
     <div class="row">
       <input id="email" placeholder="Email">
       <input id="phone" placeholder="Mobile Number">
     </div>
-
-    <h3>Road Location</h3>
-    <input id="locationText" placeholder="Street / Road Name (Type or Auto-detect)" />
-    <button class="detectBtn" onclick="detectLocation()">Auto-detect My Location</button>
-
-    <h3>Select Location</h3>
+    <input id="locationText" placeholder="Street / Road Name">
+    <button class="detectBtn" onclick="detectLocation()">Auto-detect Location</button>
     <div id="reportMap"></div>
     <p id="selectedLocation">No location selected</p>
-
-    <h3>Road Issue</h3>
     <textarea id="issue" placeholder="Describe the issue"></textarea>
-
-    <h3>Upload Photo</h3>
     <input type="file" id="photo">
     <img id="photoPreview">
-
     <button class="submitBtn" onclick="submitReport()">Submit Report</button>
   </div>
 </section>
 
-<!-- ===== POPUP ===== -->
+<!-- POPUP -->
 <div id="popup">
   <div class="popup-card">
     <h3>Report Submitted Successfully!</h3>
@@ -130,44 +103,6 @@
   </div>
 </div>
 
-<!-- ===== FIREBASE + SCRIPTS ===== -->
-<script type="module">
-  // Firebase v10 Modular Setup
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-  import { firebaseConfig } from "./firebase-config.js";
-  import { detectLocation, loadMap, submitReport, resetForm, closePopup, newReport, toggleMenu, showPage, loadReports } from "./script.js";
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  // Protect page: redirect to login if not authenticated
-  onAuthStateChanged(auth, user => {
-    if (!user) window.location.href = "login.html";
-  });
-
-  // Logout function
-  window.logout = async () => {
-    await signOut(auth);
-    window.location.href = "login.html";
-  };
-
-  // Expose script functions to global scope for onclick handlers
-  window.detectLocation = detectLocation;
-  window.loadMap = loadMap;
-  window.submitReport = submitReport;
-  window.resetForm = resetForm;
-  window.closePopup = closePopup;
-  window.newReport = newReport;
-  window.toggleMenu = toggleMenu;
-  window.showPage = showPage;
-  window.loadReports = loadReports;
-</script>
-
-<script type="module">
-  import { firebaseConfig } from './firebase-config.js';
-</script>
-
+<script type="module" src="script.js"></script>
 </body>
 </html>
-
