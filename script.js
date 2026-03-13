@@ -1,9 +1,21 @@
 // ===== Firebase & Auth =====
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { firebaseConfig } from "./firebase-config.js";
+
+// Initialize
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+
+// Login function
+async function login(email, password){
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    console.log("Logged in:", userCredential.user);
+  } catch(error){
+    console.error(error);
+  }
+}
 
 // Protect page
 onAuthStateChanged(auth, (user) => {
@@ -141,4 +153,5 @@ function nextSlide() {
   slides[currentSlide].classList.add("active");
 }
 setInterval(nextSlide, 5000);
+
 
