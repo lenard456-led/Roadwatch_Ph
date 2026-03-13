@@ -3,28 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RoadWatch PH - Login</title>
+<title>Login - RoadWatch PH</title>
 <link rel="stylesheet" href="style.css">
+<script type="module" src="auth.js"></script>
 </head>
 <body>
+  <div class="login-card">
+    <h2>RoadWatch PH Login</h2>
 
-<div class="login-card">
-  <h2>Login</h2>
-  <input id="email" type="email" placeholder="Email">
-  <input id="password" type="password" placeholder="Password">
-  <button id="loginBtn">Login</button>
-  <button id="googleBtn">Login with Google</button>
-  <p>Don't have an account? <button id="registerBtn">Register</button></p>
-</div>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
 
-<script type="module">
-  import { login, register, googleLogin } from './auth.js';
-
-  // Attach buttons to functions
-  document.getElementById('loginBtn').addEventListener('click', login);
-  document.getElementById('registerBtn').addEventListener('click', register);
-  document.getElementById('googleBtn').addEventListener('click', googleLogin);
-</script>
-
+    <button onclick="login()">Login</button>
+    <button onclick="register()">Register</button>
+    <button onclick="googleLogin()">Login with Google</button>
+  </div>
 </body>
 </html>
