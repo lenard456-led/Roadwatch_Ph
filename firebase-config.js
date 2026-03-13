@@ -1,9 +1,13 @@
-// firebase-config.js
-export const firebaseConfig = {
-  apiKey: "YOUR_REAL_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+const firebaseConfig = {
+  apiKey: "AIzaSyCOBox7Nx7MuYM7fjacH3DK5ZP9Xo3Nvws",
+  authDomain: "roadwatch-ph.firebaseapp.com",
+  projectId: "roadwatch-ph",
+  storageBucket: "roadwatch-ph.firebasestorage.app",
+  messagingSenderId: "1310446404",
+  appId: "1:1310446404:web:e71bf3a28fa14a33d3fd11",
+  measurementId: "G-JYGBCD3048"
 };
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
