@@ -269,3 +269,154 @@ background:#00b4d8;
 color:white;
 transform:scale(1.05);
 }
+
+/* ===== Hero Carousel ===== */
+.hero {
+  position: relative;
+  height: 92vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-carousel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: 1s ease;
+  filter: brightness(0.6);
+}
+
+.carousel-slide.active {
+  left: 0;
+}
+
+/* Hero Content */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 750px;
+  padding: 20px;
+  animation: fadeUp 1s ease;
+}
+
+.hero h1 {
+  font-size: 55px;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+/* Hero Button */
+.heroBtn {
+  background: #00f5d4;
+  color: #011f4b;
+  border: none;
+  padding: 15px 35px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.heroBtn:hover {
+  background: #00b4d8;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Road Gallery ===== */
+.road-gallery {
+  padding: 40px 20px;
+  text-align: center;
+  background: #001f3f;
+}
+.road-gallery h2 {
+  margin-bottom: 20px;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap: 20px;
+}
+.gallery-grid img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+}
+.gallery-grid img:hover {
+  transform: scale(1.05);
+}
+
+/* ===== Feature Cards ===== */
+.features {
+  padding: 50px 20px;
+  text-align: center;
+  background: #0a2540;
+  color: white;
+}
+.features h2 {
+  margin-bottom: 30px;
+}
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap: 25px;
+}
+.feature-card {
+  background: rgba(0,29,61,0.9);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  transition: transform 0.3s;
+}
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+.feature-card h3 {
+  margin-bottom: 12px;
+}
+.feature-card p {
+  margin-bottom: 20px;
+}
+.feature-card button {
+  background: #00f5d4;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.feature-card button:hover {
+  background: #00b4d8;
+  color: white;
+  transform: scale(1.05);
+}
