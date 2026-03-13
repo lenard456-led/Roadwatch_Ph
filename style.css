@@ -353,3 +353,9 @@ background-position:center;
   transform: scale(1.05);
 }
 
+
+
+body { font-family: Arial; margin: 0; padding: 0; }
+.login-card { width: 300px; margin: 100px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; text-align: center; }
+.login-card input { display: block; width: 90%; margin: 10px auto; padding: 10px; }
+.login-card button { margin: 5px; padding: 10px 20px; }
