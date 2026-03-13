@@ -1,3 +1,4 @@
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyCOBox7Nx7MuYM7fjacH3DK5ZP9Xo3Nvws",
   authDomain: "roadwatch-ph.firebaseapp.com",
@@ -7,7 +8,3 @@ const firebaseConfig = {
   appId: "1:1310446404:web:e71bf3a28fa14a33d3fd11",
   measurementId: "G-JYGBCD3048"
 };
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
