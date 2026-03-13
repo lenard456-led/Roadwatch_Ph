@@ -12,14 +12,18 @@
   <h2>Login</h2>
   <input id="email" type="email" placeholder="Email">
   <input id="password" type="password" placeholder="Password">
-  <button onclick="login()">Login</button>
-  <button onclick="googleLogin()">Login with Google</button>
-  <p>Don't have an account? <button onclick="register()">Register</button></p>
+  <button id="loginBtn">Login</button>
+  <button id="googleBtn">Login with Google</button>
+  <p>Don't have an account? <button id="registerBtn">Register</button></p>
 </div>
 
-<!-- Import auth.js as module -->
 <script type="module">
   import { login, register, googleLogin } from './auth.js';
+
+  // Attach buttons to functions
+  document.getElementById('loginBtn').addEventListener('click', login);
+  document.getElementById('registerBtn').addEventListener('click', register);
+  document.getElementById('googleBtn').addEventListener('click', googleLogin);
 </script>
 
 </body>
